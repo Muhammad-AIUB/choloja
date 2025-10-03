@@ -1,0 +1,197 @@
+{
+    "Header": {
+        "flights": "Flights",
+        "globalAccommodation": "Global Accommodation",
+        "globalTour": "Global Tour",
+        "domesticLeisure": "Domestic Leisure",
+        "performance": "Performance",
+        "hotel": "Hotel/Resort",
+        "pension": "Pension/Pool Villa",
+        "glamping": "Glamping/Camping",
+        "motel": "Motel",
+        "transportation": "Transportation",
+        "search": "Search",
+        "cart": "Shopping Cart",
+        "user": "User Menu"
+    },
+    "Footer": {
+        "description": "Experience the best travel with NOL",
+        "company": "Company",
+        "about": "About Us",
+        "careers": "Careers",
+        "partnership": "Partnership",
+        "services": "Services",
+        "hotelResort": "Hotel/Resort",
+        "pensionVilla": "Pension/Villa",
+        "leisure": "Leisure/Activities",
+        "flights": "Flights",
+        "support": "Customer Support",
+        "help": "Help Center",
+        "faq": "FAQ",
+        "contact": "Contact Us",
+        "terms": "Terms of Service",
+        "privacy": "Privacy Policy",
+        "youth": "Youth Protection",
+        "location": "Location Terms",
+        "copyright": "© 2025 NOL Travel. All rights reserved.",
+        "companyInfo": "NOL Universe Co., Ltd. | CEO: Hong Gil-dong | Business Number: 824-81-02515",
+        "businessInfo": "Mail Order Sales: 2024-Seoul Gangnam-12345 | Tourism Business: 2024-000001",
+        "addressInfo": "Address: 427 Teheran-ro, Gangnam-gu, Seoul | Customer Service: 1670-6250"
+    },
+    "Hero": {
+        "title": "Where shall we go?",
+        "subtitle": "Start your best travel experience with NOL",
+        "destination": "Where to?",
+        "destinationPlaceholder": "Enter destination",
+        "checkIn": "Check-in",
+        "checkOut": "Check-out",
+        "guests": "Guests",
+        "guestsSuffix": " guests",
+        "guestsCount": "{count} guests",
+        "searchButton": "Search",
+        "search": "Search",
+        "popularSearches": "Popular searches:",
+        "categories": {
+            "hotel": "Hotel/Resort",
+            "pension": "Pension/Villa",
+            "glamping": "Glamping/Camping",
+            "motel": "Motel",
+            "leisure": "Leisure Tickets",
+            "global": "Global",
+            "flights": "Flights",
+            "tour": "Global Tour"
+        }
+    },
+    "Home": {
+        "promotionsTitle": "🎁 Special Offers You Can't Miss",
+        "liveCommerceTitle": "🔴 NOL Live Amazing Benefits!",
+        "liveCommerceSubtitle": "Find special deals through live streaming",
+        "hotelsTitle": "🏨 This Week's Hotel Special Deals!",
+        "pensionsTitle": "🏡 This Week's Special Pensions",
+        "pensionsSubtitle": "Healing trips with family",
+        "leisureTitle": "🎢 Chuseok Holiday Activities Collection",
+        "destinationsTitle": "📍 Popular Destinations",
+        "destinationsSubtitle": "Check out the hottest travel destinations",
+        "accommodations": "accommodations",
+        "trustTitle": "Why Choose NOL",
+        "viewAll": "View All",
+        "promotions": {
+            "coupon": "Up to 50,000 KRW Coupon Pack",
+            "couponDesc": "Get it now",
+            "draw": "NOL Draw",
+            "drawDesc": "Lucky draw event",
+            "gold": "Gold Member Exclusive Coupon",
+            "goldDesc": "Meet special benefits",
+            "monthly": "This Month's Coupon Pack",
+            "monthlyDesc": "Monthly updated coupons"
+        },
+        "liveStatus": {
+            "scheduled": "Scheduled",
+            "live": "LIVE",
+            "replay": "Replay"
+        },
+        "destinations": {
+            "jeju": "Jeju Island",
+            "jejuCount": "3,245 accommodations",
+            "busan": "Busan",
+            "busanCount": "1,892 accommodations",
+            "gangneung": "Gangneung",
+            "gangneungCount": "1,456 accommodations"
+        },
+        "trust": {
+            "trusted": "Reliable Platform",
+            "trustedDesc": "Only verified accommodations",
+            "reliable": "Reliable Platform",
+            "reliableDesc": "Only verified accommodations",
+            "bestPrice": "Best Price Guarantee",
+            "bestPriceDesc": "Refund if you find a lower price",
+            "benefits": "Various Benefits",
+            "benefitsDesc": "Member-exclusive deals and coupons",
+            "support": "24/7 Customer Support",
+            "supportDesc": "Get help anytime"
+        }
+    },
+    "Listing": {
+        "perNight": "per night",
+        "checkDates": "Check other dates",
+        "reviews": "reviews",
+        "discount": "OFF"
+    },
+    "Language": {
+        "selectLanguage": "Select Language",
+        "en": "English",
+        "ko": "한국어",
+        "bn": "বাংলা"
+    },
+    "MockData": {
+        "banners": {
+            "banner1Title": "Welcome to Chungbuk This Fall",
+            "banner2Title": "Japan Travel with Special Benefits",
+            "banner3Title": "Chuseok Holiday Activities Collection"
+        },
+        "hotels": {
+            "hotel1": "Hotel Naru Seoul - MGallery",
+            "hotel2": "Shilla Stay Guro",
+            "hotel3": "Shilla Stay Seocho",
+            "hotel4": "Grand Hyatt Seoul"
+        },
+        "pensions": {
+            "pension1": "Gapyeong Sky and Earth Healing Stay",
+            "pension2": "Taean Pool Villa Amare",
+            "pension3": "Hongcheon N Together Kids Pool Villa",
+            "pension4": "Jeju Ocean View Private Pension"
+        },
+        "leisure": {
+            "leisure1Title": "★NOL Exclusive Deal★ Anseong Farmland Ticket",
+            "leisure2Title": "Seoul Grand Park Lift + Seoul Zoo Ticket",
+            "leisure3Title": "Jeju Shinhwa World (Theme Park/Water Park)",
+            "leisure4Title": "Everland Free Pass"
+        },
+        "liveCommerce": {
+            "live1Title": "[Shinhwa World x Jin Air] All-in-One Jeju Travel Deal!",
+            "live2Title": "[Vivaldi Park Season Pass] Winter Sports Kingdom Deal",
+            "live3Title": "[Gyeongsang Hotels & Resorts] Fall in Gyeongju & Busan & Geoje!",
+            "live4Title": "[Jeju Leisure Special] Must-Visit Jeju Courses Deal!"
+        },
+        "promotions": {
+            "promo1Title": "Up to 50,000 KRW Coupon Pack",
+            "promo1Desc": "Get it now",
+            "promo2Title": "NOL Draw",
+            "promo2Desc": "Lucky draw event",
+            "promo3Title": "Gold Member Exclusive Coupon",
+            "promo3Desc": "Meet special benefits",
+            "promo4Title": "This Month's Coupon Pack",
+            "promo4Desc": "Monthly updated coupons"
+        },
+        "locations": {
+            "seoulJunggu": "Jung-gu, Seoul",
+            "seoulGuro": "Guro-gu, Seoul",
+            "seoulSeocho": "Seocho-gu, Seoul",
+            "seoulYongsan": "Yongsan-gu, Seoul",
+            "gyeonggiGapyeong": "Gapyeong-gun, Gyeonggi",
+            "chungnamTaean": "Taean-gun, Chungnam",
+            "gangwonHongcheon": "Hongcheon-gun, Gangwon",
+            "jejuSeogwipo": "Seogwipo-si, Jeju",
+            "gyeonggiAnseong": "Anseong-si, Gyeonggi",
+            "seoulGwacheon": "Gwacheon-si, Seoul",
+            "gyeonggiYongin": "Yongin-si, Gyeonggi"
+        },
+        "categories": {
+            "hotel": "Hotel",
+            "pension": "Pension",
+            "poolVilla": "Pool Villa"
+        },
+        "badges": {
+            "hot": "HOT",
+            "new": "NEW",
+            "gold": "GOLD",
+            "sale": "SALE",
+            "popular": "Popular",
+            "best": "Best"
+        },
+        "status": {
+            "checkDates": "Check other dates",
+            "replay": "Replay"
+        }
+    }
+}

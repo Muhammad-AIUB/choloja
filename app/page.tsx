@@ -1,103 +1,167 @@
-import Image from "next/image";
+"use client";
+
+import { useTranslations } from "next-intl";
+import { HeroSection } from "@/components/home/HeroSection";
+import { BannerCarousel } from "@/components/home/BannerCarousel";
+import { ListingSection } from "@/components/home/ListingSection";
+import { DealCarousel } from "@/components/home/DealCarousel";
+import { LiveCommerceGrid } from "@/components/home/LiveCommerceGrid";
+import { PromotionCard } from "@/components/home/PromotionCard";
+import { Section } from "@/components/ui/section";
+import { useTranslatedMockData } from "@/lib/constants/useTranslatedMockData";
 
 export default function Home() {
-  return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+    const t = useTranslations("Home");
+    const {
+        mockBanners,
+        mockHotelListings,
+        mockPensionListings,
+        mockLeisureDeals,
+        mockLiveCommerce,
+        mockPromotions,
+    } = useTranslatedMockData();
+    return (
+        <main className="min-h-screen">
+            {/* Hero Section with Search */}
+            <HeroSection />
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-        </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
-  );
+            {/* Main Banner */}
+            <Section>
+                <BannerCarousel banners={mockBanners} />
+            </Section>
+
+            {/* Promotions Grid */}
+            <Section title={t("promotionsTitle")} background="gray">
+                <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+                    {mockPromotions.map((promo) => (
+                        <PromotionCard key={promo.id} promotion={promo} />
+                    ))}
+                </div>
+            </Section>
+
+            {/* Live Commerce Section */}
+            <Section
+                title={t("liveCommerceTitle")}
+                subtitle={t("liveCommerceSubtitle")}
+            >
+                <LiveCommerceGrid items={mockLiveCommerce} />
+            </Section>
+
+            {/* Hotels Section */}
+            <Section title={t("hotelsTitle")} background="gray">
+                <ListingSection
+                    title=""
+                    listings={mockHotelListings}
+                    viewAllLink="/hotel"
+                />
+            </Section>
+
+            {/* Pensions Section */}
+            <Section
+                title={t("pensionsTitle")}
+                subtitle={t("pensionsSubtitle")}
+            >
+                <ListingSection
+                    title=""
+                    listings={mockPensionListings}
+                    viewAllLink="/pension"
+                />
+            </Section>
+
+            {/* Leisure Activities */}
+            <Section title={t("leisureTitle")} background="gray">
+                <DealCarousel deals={mockLeisureDeals} />
+            </Section>
+
+            {/* Popular Destinations */}
+            <Section
+                title={t("destinationsTitle")}
+                subtitle={t("destinationsSubtitle")}
+            >
+                <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                    {[
+                        {
+                            id: "dest1",
+                            name: t("destinations.jeju"),
+                            imageUrl:
+                                "https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=800&h=600&fit=crop",
+                            count: "3,245",
+                        },
+                        {
+                            id: "dest2",
+                            name: t("destinations.busan"),
+                            imageUrl:
+                                "https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?w=800&h=600&fit=crop",
+                            count: "1,892",
+                        },
+                        {
+                            id: "dest3",
+                            name: t("destinations.gangneung"),
+                            imageUrl:
+                                "https://images.unsplash.com/photo-1506929562872-bb421503ef21?w=800&h=600&fit=crop",
+                            count: "1,456",
+                        },
+                    ].map((dest) => (
+                        <div
+                            key={dest.id}
+                            className="group relative aspect-[4/3] cursor-pointer overflow-hidden rounded-xl"
+                        >
+                            <img
+                                src={dest.imageUrl}
+                                alt={dest.name}
+                                className="h-full w-full object-cover transition-transform group-hover:scale-110"
+                            />
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
+                            <div className="absolute bottom-6 left-6 text-white">
+                                <h3 className="mb-1 text-2xl font-bold">
+                                    {dest.name}
+                                </h3>
+                                <p className="text-sm opacity-90">
+                                    {dest.count} {t("accommodations")}
+                                </p>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+            </Section>
+
+            {/* Trust Indicators */}
+            <Section background="gray">
+                <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+                    {[
+                        {
+                            icon: "🏆",
+                            titleKey: "trust.trusted",
+                            descriptionKey: "trust.trustedDesc",
+                        },
+                        {
+                            icon: "💰",
+                            titleKey: "trust.bestPrice",
+                            descriptionKey: "trust.bestPriceDesc",
+                        },
+                        {
+                            icon: "🎁",
+                            titleKey: "trust.benefits",
+                            descriptionKey: "trust.benefitsDesc",
+                        },
+                        {
+                            icon: "💬",
+                            titleKey: "trust.support",
+                            descriptionKey: "trust.supportDesc",
+                        },
+                    ].map((feature, index) => (
+                        <div key={index} className="text-center">
+                            <div className="mb-4 text-4xl">{feature.icon}</div>
+                            <h3 className="mb-2 font-semibold text-gray-900">
+                                {t(feature.titleKey)}
+                            </h3>
+                            <p className="text-sm text-gray-600">
+                                {t(feature.descriptionKey)}
+                            </p>
+                        </div>
+                    ))}
+                </div>
+            </Section>
+        </main>
+    );
 }

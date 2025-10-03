@@ -1,0 +1,197 @@
+{
+    "Header": {
+        "flights": "항공",
+        "globalAccommodation": "해외숙소",
+        "globalTour": "해외투어티켓",
+        "domesticLeisure": "국내레저",
+        "performance": "공연/전시",
+        "hotel": "호텔/리조트",
+        "pension": "펜션/풀빌라",
+        "glamping": "글램핑/캠핑",
+        "motel": "모텔",
+        "transportation": "교통",
+        "search": "검색",
+        "cart": "장바구니",
+        "user": "사용자 메뉴"
+    },
+    "Footer": {
+        "description": "최고의 여행 경험을 제공하는 NOL과 함께하세요",
+        "company": "회사소개",
+        "about": "회사소개",
+        "careers": "인재채용",
+        "partnership": "광고제휴문의",
+        "services": "서비스",
+        "hotelResort": "호텔/리조트",
+        "pensionVilla": "펜션/풀빌라",
+        "leisure": "레저/액티비티",
+        "flights": "항공권",
+        "support": "고객지원",
+        "help": "고객센터",
+        "faq": "자주묻는질문",
+        "contact": "1:1 문의",
+        "terms": "이용약관",
+        "privacy": "개인정보처리방침",
+        "youth": "청소년보호정책",
+        "location": "위치정보 이용약관",
+        "copyright": "© 2025 NOL Travel. All rights reserved.",
+        "companyInfo": "(주)놀유니버스 | 대표이사: 홍길동 | 사업자등록번호: 824-81-02515",
+        "businessInfo": "통신판매업신고: 제2024-서울강남-12345호 | 관광사업자 등록번호: 제2024-000001호",
+        "addressInfo": "주소: 서울특별시 강남구 테헤란로 427 (삼성동) | 고객센터: 1670-6250"
+    },
+    "Hero": {
+        "title": "어디로 떠나볼까요?",
+        "subtitle": "최고의 여행 경험을 NOL과 함께 시작하세요",
+        "destination": "어디로 떠나볼까요?",
+        "destinationPlaceholder": "목적지 입력",
+        "checkIn": "체크인",
+        "checkOut": "체크아웃",
+        "guests": "인원",
+        "guestsSuffix": "명",
+        "guestsCount": "{count}명",
+        "searchButton": "검색하기",
+        "search": "검색하기",
+        "popularSearches": "인기 검색:",
+        "categories": {
+            "hotel": "호텔/리조트",
+            "pension": "펜션/풀빌라",
+            "glamping": "글램핑/캠핑",
+            "motel": "모텔",
+            "leisure": "레저티켓",
+            "global": "해외숙소",
+            "flights": "항공",
+            "tour": "해외투어"
+        }
+    },
+    "Home": {
+        "promotionsTitle": "🎁 놓치면 안되는 혜택",
+        "liveCommerceTitle": "🔴 NOL Live 놀라운 혜택!",
+        "liveCommerceSubtitle": "실시간 라이브 방송으로 특가 상품을 만나보세요",
+        "hotelsTitle": "🏨 이번주 호텔 특가 오픈!",
+        "pensionsTitle": "🏡 이번주 특가 펜션",
+        "pensionsSubtitle": "가족과 함께 떠나는 힐링 여행",
+        "leisureTitle": "🎢 추석 황금연휴 놀거리 모음",
+        "destinationsTitle": "📍 인기 여행지",
+        "destinationsSubtitle": "지금 가장 핫한 여행지를 확인해보세요",
+        "accommodations": "숙소",
+        "trustTitle": "왜 NOL을 선택해야 할까요?",
+        "viewAll": "전체보기",
+        "promotions": {
+            "coupon": "최대 5만원 쿠폰팩",
+            "couponDesc": "지금 바로 받아가세요",
+            "draw": "NOL 드로우",
+            "drawDesc": "럭키드로우 이벤트",
+            "gold": "골드회원 전용 쿠폰",
+            "goldDesc": "특별한 혜택을 만나보세요",
+            "monthly": "이번달 쿠폰팩",
+            "monthlyDesc": "매월 업데이트되는 쿠폰"
+        },
+        "liveStatus": {
+            "scheduled": "방송예정",
+            "live": "생방송",
+            "replay": "다시보기"
+        },
+        "destinations": {
+            "jeju": "제주도",
+            "jejuCount": "3,245개 숙소",
+            "busan": "부산",
+            "busanCount": "1,892개 숙소",
+            "gangneung": "강릉",
+            "gangneungCount": "1,456개 숙소"
+        },
+        "trust": {
+            "trusted": "믿을 수 있는 플랫폼",
+            "trustedDesc": "검증된 숙소만 엄선",
+            "reliable": "믿을 수 있는 플랫폼",
+            "reliableDesc": "검증된 숙소만 엄선",
+            "bestPrice": "최저가 보장",
+            "bestPriceDesc": "더 저렴한 가격을 찾으면 환불",
+            "benefits": "다양한 혜택",
+            "benefitsDesc": "회원 전용 특가와 쿠폰",
+            "support": "24시간 고객지원",
+            "supportDesc": "언제든 도움을 받으세요"
+        }
+    },
+    "Listing": {
+        "perNight": "원",
+        "checkDates": "다른 날짜 확인",
+        "reviews": "개 리뷰",
+        "discount": "할인"
+    },
+    "Language": {
+        "selectLanguage": "언어 선택",
+        "en": "English",
+        "ko": "한국어",
+        "bn": "বাংলা"
+    },
+    "MockData": {
+        "banners": {
+            "banner1Title": "올가을엔 충북으로 WELL&COME",
+            "banner2Title": "혜택받고 떠나는 일본여행",
+            "banner3Title": "추석 황금연휴 놀거리 모음"
+        },
+        "hotels": {
+            "hotel1": "호텔 나루 서울-엠갤러리",
+            "hotel2": "신라스테이 구로",
+            "hotel3": "신라스테이 서초",
+            "hotel4": "그랜드 하얏트 서울"
+        },
+        "pensions": {
+            "pension1": "가평 하늘과땅사이힐링스테이",
+            "pension2": "태안 풀빌라아마레",
+            "pension3": "홍천 앤투게더키즈풀빌라",
+            "pension4": "제주 오션뷰 독채펜션"
+        },
+        "leisure": {
+            "leisure1Title": "★NOL 단독 특가★ 안성팜랜드 입장권",
+            "leisure2Title": "서울대공원 리프트+서울동물원 입장권",
+            "leisure3Title": "제주신화월드(신화테마파크/신화워터파크)",
+            "leisure4Title": "에버랜드 자유이용권"
+        },
+        "liveCommerce": {
+            "live1Title": "[신화월드x진에어] 한 번에 준비하는 제주 여행 특가!",
+            "live2Title": "[비발디파크 일반시즌패스] 겨울 레포츠 왕국 준비 특가",
+            "live3Title": "[경상 호텔&리조트] 가을엔 경주&부산&거제 여행!",
+            "live4Title": "[제주 레저 특집] 제주여행 필수코스 총집합 특가!"
+        },
+        "promotions": {
+            "promo1Title": "최대 5만원 쿠폰팩",
+            "promo1Desc": "지금 바로 받아가세요",
+            "promo2Title": "NOL 드로우",
+            "promo2Desc": "럭키드로우 이벤트",
+            "promo3Title": "골드회원 전용 쿠폰",
+            "promo3Desc": "특별한 혜택을 만나보세요",
+            "promo4Title": "이번달 쿠폰팩",
+            "promo4Desc": "매월 업데이트되는 쿠폰"
+        },
+        "locations": {
+            "seoulJunggu": "서울 중구",
+            "seoulGuro": "서울 구로구",
+            "seoulSeocho": "서울 서초구",
+            "seoulYongsan": "서울 용산구",
+            "gyeonggiGapyeong": "경기 가평군",
+            "chungnamTaean": "충남 태안군",
+            "gangwonHongcheon": "강원 홍천군",
+            "jejuSeogwipo": "제주 서귀포시",
+            "gyeonggiAnseong": "경기 안성시",
+            "seoulGwacheon": "서울 과천시",
+            "gyeonggiYongin": "경기 용인시"
+        },
+        "categories": {
+            "hotel": "호텔",
+            "pension": "펜션",
+            "poolVilla": "풀빌라"
+        },
+        "badges": {
+            "hot": "HOT",
+            "new": "NEW",
+            "gold": "GOLD",
+            "sale": "SALE",
+            "popular": "인기",
+            "best": "베스트"
+        },
+        "status": {
+            "checkDates": "다른 날짜 확인",
+            "replay": "다시보기"
+        }
+    }
+}
