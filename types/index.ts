@@ -48,6 +48,83 @@ export interface Listing {
     isAvailable?: boolean;
 }
 
+// Accommodation Detail Types
+export interface Room {
+    id: string;
+    name: string;
+    description: string;
+    images: string[];
+    capacity: {
+        standard: number;
+        max: number;
+    };
+    bedType: string;
+    size?: number;
+    price: string;
+    originalPrice?: string;
+    discount?: string;
+    checkInTime: string;
+    checkOutTime: string;
+    amenities: string[];
+    packages?: RoomPackage[];
+    availability: "available" | "limited" | "soldout";
+    remainingRooms?: number;
+    cancellationPolicy: string;
+}
+
+export interface RoomPackage {
+    id: string;
+    name: string;
+    description: string;
+    price: string;
+    originalPrice?: string;
+    discount?: string;
+    benefits: string[];
+}
+
+export interface Amenity {
+    id: string;
+    name: string;
+    icon: string;
+    category: string;
+}
+
+export interface Review {
+    id: string;
+    author: string;
+    rating: number;
+    date: string;
+    comment: string;
+    helpful?: number;
+    images?: string[];
+}
+
+export interface AccommodationDetail {
+    id: string;
+    title: string;
+    location: string;
+    address: string;
+    rating: number;
+    reviewCount: number;
+    description: string;
+    images: string[];
+    priceRange: string;
+    checkInTime: string;
+    checkOutTime: string;
+    amenities: Amenity[];
+    rooms: Room[];
+    reviews: Review[];
+    aiReviewSummary?: string;
+    badges: string[];
+    policies: {
+        cancellation: string;
+        children: string;
+        pets: string;
+        smoking: string;
+    };
+    nearbyAttractions?: string[];
+}
+
 export interface Deal {
     id: string;
     title: string;

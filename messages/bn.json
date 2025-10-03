@@ -193,5 +193,54 @@
             "checkDates": "অন্যান্য তারিখ দেখুন",
             "replay": "আবার দেখুন"
         }
+    },
+    "HotelDetail": {
+        "notFound": "আবাসন খুঁজে পাওয়া যায়নি",
+        "backToHome": "হোম এ ফিরে যান",
+        "back": "পিছনে",
+        "reviews": "পর্যালোচনা",
+        "aboutProperty": "এই সম্পত্তি সম্পর্কে",
+        "amenities": "সুবিধা ও সেবা",
+        "availableRooms": "উপলব্ধ কক্ষ",
+        "location": "অবস্থান",
+        "checkInOut": "চেক-ইন ও চেক-আউট",
+        "checkIn": "চেক-ইন",
+        "checkOut": "চেক-আউট",
+        "perNight": "প্রতি রাত",
+        "checkAvailability": "উপলব্ধতা পরীক্ষা করুন",
+        "freeCancellation": "বিনামূল্যে বাতিল",
+        "instantConfirmation": "তাৎক্ষণিক নিশ্চিতকরণ",
+        "mapPlaceholder": "মানচিত্র এখানে প্রদর্শিত হবে",
+        "soldOut": "বিক্রি শেষ",
+        "limitedRooms": "মাত্র {count}টি কক্ষ বাকি",
+        "capacity": "ধারণক্ষমতা",
+        "standardPerson": "মান {count} জন",
+        "maxPerson": "সর্বোচ্চ {count} জন",
+        "bookNow": "এখনই বুক করুন",
+        "reviewCount": "{count}টি পর্যালোচনা",
+        "aiReviewSummary": "AI পর্যালোচনা সারাংশ",
+        "helpful": "সহায়ক",
+        "showAllReviews": "{count}টি আরও পর্যালোচনা দেখুন",
+        "showLessReviews": "কম পর্যালোচনা দেখুন"
+    },
+    "Promotion": {
+        "notFound": "প্রচার খুঁজে পাওয়া যায়নি",
+        "backToHome": "হোম এ ফিরে যান",
+        "back": "পিছনে"
+    },
+    "Leisure": {
+        "notFound": "অবকাশ কার্যক্রম খুঁজে পাওয়া যায়নি",
+        "backToHome": "হোম এ ফিরে যান",
+        "back": "পিছনে"
+    },
+    "Live": {
+        "notFound": "লাইভ সম্প্রচার খুঁজে পাওয়া যায়নি",
+        "backToHome": "হোম এ ফিরে যান",
+        "back": "পিছনে"
+    },
+    "Destination": {
+        "notFound": "গন্তব্য খুঁজে পাওয়া যায়নি",
+        "backToHome": "হোম এ ফিরে যান",
+        "back": "পিছনে"
     }
 }

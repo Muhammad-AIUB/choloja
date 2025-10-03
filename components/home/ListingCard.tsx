@@ -23,8 +23,19 @@ interface ListingCardProps {
 }
 
 export function ListingCard({ listing }: ListingCardProps) {
+    // Determine route based on category
+    const getRoutePrefix = () => {
+        if (
+            listing.category?.includes("펜션") ||
+            listing.category?.toLowerCase().includes("pension")
+        ) {
+            return "/pension";
+        }
+        return "/hotel";
+    };
+
     return (
-        <Link href={`/listing/${listing.id}`}>
+        <Link href={`${getRoutePrefix()}/${listing.id}`}>
             <Card className="group min-w-[280px] flex-shrink-0 cursor-pointer overflow-hidden transition-all hover:shadow-xl md:min-w-[320px]">
                 <div className="relative aspect-[4/3] overflow-hidden">
                     <Image

@@ -193,5 +193,54 @@
             "checkDates": "다른 날짜 확인",
             "replay": "다시보기"
         }
+    },
+    "HotelDetail": {
+        "notFound": "숙소를 찾을 수 없습니다",
+        "backToHome": "홈으로 돌아가기",
+        "back": "뒤로가기",
+        "reviews": "리뷰",
+        "aboutProperty": "숙소 소개",
+        "amenities": "편의시설 및 서비스",
+        "availableRooms": "예약 가능한 객실",
+        "location": "위치",
+        "checkInOut": "체크인 & 체크아웃",
+        "checkIn": "체크인",
+        "checkOut": "체크아웃",
+        "perNight": "박",
+        "checkAvailability": "예약 가능 여부 확인",
+        "freeCancellation": "무료 취소",
+        "instantConfirmation": "즉시 확정",
+        "mapPlaceholder": "지도가 여기에 표시됩니다",
+        "soldOut": "예약 마감",
+        "limitedRooms": "남은 객실 {count}개",
+        "capacity": "인원",
+        "standardPerson": "기준 {count}인",
+        "maxPerson": "최대 {count}인",
+        "bookNow": "지금 예약",
+        "reviewCount": "{count}개 리뷰",
+        "aiReviewSummary": "AI 리뷰 요약",
+        "helpful": "도움이 됐어요",
+        "showAllReviews": "{count}개 리뷰 더보기",
+        "showLessReviews": "리뷰 접기"
+    },
+    "Promotion": {
+        "notFound": "프로모션을 찾을 수 없습니다",
+        "backToHome": "홈으로 돌아가기",
+        "back": "뒤로가기"
+    },
+    "Leisure": {
+        "notFound": "레저 상품을 찾을 수 없습니다",
+        "backToHome": "홈으로 돌아가기",
+        "back": "뒤로가기"
+    },
+    "Live": {
+        "notFound": "라이브 방송을 찾을 수 없습니다",
+        "backToHome": "홈으로 돌아가기",
+        "back": "뒤로가기"
+    },
+    "Destination": {
+        "notFound": "목적지를 찾을 수 없습니다",
+        "backToHome": "홈으로 돌아가기",
+        "back": "뒤로가기"
     }
 }

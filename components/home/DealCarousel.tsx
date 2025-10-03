@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useRef } from "react";
 import Image from "next/image";
+import Link from "next/link";
 
 interface Deal {
     id: string;
@@ -71,51 +72,50 @@ export function DealCarousel({ deals, title }: DealCarouselProps) {
                     style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
                 >
                     {deals.map((deal) => (
-                        <Card
-                            key={deal.id}
-                            className="group min-w-[280px] flex-shrink-0 cursor-pointer overflow-hidden transition-all hover:shadow-xl md:min-w-[320px]"
-                        >
-                            <div className="relative aspect-[4/3] overflow-hidden">
-                                <Image
-                                    src={deal.imageUrl}
-                                    alt={deal.title}
-                                    fill
-                                    className="object-cover transition-transform group-hover:scale-110"
-                                />
-                                {deal.badge && (
-                                    <Badge className="absolute left-3 top-3 bg-pink-500 text-white">
-                                        {deal.badge}
-                                    </Badge>
-                                )}
-                                {deal.discount && (
-                                    <Badge className="absolute right-3 top-3 bg-red-500 text-white">
-                                        {deal.discount}
-                                    </Badge>
-                                )}
-                            </div>
-                            <CardContent className="p-4">
-                                <h3 className="mb-1 line-clamp-2 font-semibold text-gray-900">
-                                    {deal.title}
-                                </h3>
-                                {deal.subtitle && (
-                                    <p className="mb-2 line-clamp-1 text-sm text-gray-600">
-                                        {deal.subtitle}
-                                    </p>
-                                )}
-                                {deal.price && (
-                                    <div className="flex items-center gap-2">
-                                        {deal.originalPrice && (
-                                            <span className="text-sm text-gray-400 line-through">
-                                                {deal.originalPrice}
+                        <Link key={deal.id} href={`/leisure/${deal.id}`}>
+                            <Card className="group min-w-[280px] flex-shrink-0 cursor-pointer overflow-hidden transition-all hover:shadow-xl md:min-w-[320px]">
+                                <div className="relative aspect-[4/3] overflow-hidden">
+                                    <Image
+                                        src={deal.imageUrl}
+                                        alt={deal.title}
+                                        fill
+                                        className="object-cover transition-transform group-hover:scale-110"
+                                    />
+                                    {deal.badge && (
+                                        <Badge className="absolute left-3 top-3 bg-pink-500 text-white">
+                                            {deal.badge}
+                                        </Badge>
+                                    )}
+                                    {deal.discount && (
+                                        <Badge className="absolute right-3 top-3 bg-red-500 text-white">
+                                            {deal.discount}
+                                        </Badge>
+                                    )}
+                                </div>
+                                <CardContent className="p-4">
+                                    <h3 className="mb-1 line-clamp-2 font-semibold text-gray-900">
+                                        {deal.title}
+                                    </h3>
+                                    {deal.subtitle && (
+                                        <p className="mb-2 line-clamp-1 text-sm text-gray-600">
+                                            {deal.subtitle}
+                                        </p>
+                                    )}
+                                    {deal.price && (
+                                        <div className="flex items-center gap-2">
+                                            {deal.originalPrice && (
+                                                <span className="text-sm text-gray-400 line-through">
+                                                    {deal.originalPrice}
+                                                </span>
+                                            )}
+                                            <span className="text-lg font-bold text-pink-600">
+                                                {deal.price}
                                             </span>
-                                        )}
-                                        <span className="text-lg font-bold text-pink-600">
-                                            {deal.price}
-                                        </span>
-                                    </div>
-                                )}
-                            </CardContent>
-                        </Card>
+                                        </div>
+                                    )}
+                                </CardContent>
+                            </Card>
+                        </Link>
                     ))}
                 </div>
             </div>

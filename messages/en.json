@@ -193,5 +193,54 @@
             "checkDates": "Check other dates",
             "replay": "Replay"
         }
+    },
+    "HotelDetail": {
+        "notFound": "Accommodation not found",
+        "backToHome": "Back to Home",
+        "back": "Back",
+        "reviews": "reviews",
+        "aboutProperty": "About This Property",
+        "amenities": "Amenities & Services",
+        "availableRooms": "Available Rooms",
+        "location": "Location",
+        "checkInOut": "Check-in & Check-out",
+        "checkIn": "Check-in",
+        "checkOut": "Check-out",
+        "perNight": "per night",
+        "checkAvailability": "Check Availability",
+        "freeCancellation": "Free cancellation",
+        "instantConfirmation": "Instant confirmation",
+        "mapPlaceholder": "Map will be displayed here",
+        "soldOut": "Sold Out",
+        "limitedRooms": "Only {count} rooms left",
+        "capacity": "Capacity",
+        "standardPerson": "Standard {count}",
+        "maxPerson": "Max {count}",
+        "bookNow": "Book Now",
+        "reviewCount": "{count} reviews",
+        "aiReviewSummary": "AI Review Summary",
+        "helpful": "Helpful",
+        "showAllReviews": "Show {count} more reviews",
+        "showLessReviews": "Show less reviews"
+    },
+    "Promotion": {
+        "notFound": "Promotion not found",
+        "backToHome": "Back to Home",
+        "back": "Back"
+    },
+    "Leisure": {
+        "notFound": "Leisure activity not found",
+        "backToHome": "Back to Home",
+        "back": "Back"
+    },
+    "Live": {
+        "notFound": "Live broadcast not found",
+        "backToHome": "Back to Home",
+        "back": "Back"
+    },
+    "Destination": {
+        "notFound": "Destination not found",
+        "backToHome": "Back to Home",
+        "back": "Back"
     }
 }

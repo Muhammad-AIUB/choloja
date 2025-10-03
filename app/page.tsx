@@ -9,6 +9,7 @@ import { LiveCommerceGrid } from "@/components/home/LiveCommerceGrid";
 import { PromotionCard } from "@/components/home/PromotionCard";
 import { Section } from "@/components/ui/section";
 import { useTranslatedMockData } from "@/lib/constants/useTranslatedMockData";
+import Link from "next/link";
 
 export default function Home() {
     const t = useTranslations("Home");
@@ -102,25 +103,24 @@ export default function Home() {
                             count: "1,456",
                         },
                     ].map((dest) => (
-                        <div
-                            key={dest.id}
-                            className="group relative aspect-[4/3] cursor-pointer overflow-hidden rounded-xl"
-                        >
-                            <img
-                                src={dest.imageUrl}
-                                alt={dest.name}
-                                className="h-full w-full object-cover transition-transform group-hover:scale-110"
-                            />
-                            <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
-                            <div className="absolute bottom-6 left-6 text-white">
-                                <h3 className="mb-1 text-2xl font-bold">
-                                    {dest.name}
-                                </h3>
-                                <p className="text-sm opacity-90">
-                                    {dest.count} {t("accommodations")}
-                                </p>
+                        <Link key={dest.id} href={`/destination/${dest.id}`}>
+                            <div className="group relative aspect-[4/3] cursor-pointer overflow-hidden rounded-xl">
+                                <img
+                                    src={dest.imageUrl}
+                                    alt={dest.name}
+                                    className="h-full w-full object-cover transition-transform group-hover:scale-110"
+                                />
+                                <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
+                                <div className="absolute bottom-6 left-6 text-white">
+                                    <h3 className="mb-1 text-2xl font-bold">
+                                        {dest.name}
+                                    </h3>
+                                    <p className="text-sm opacity-90">
+                                        {dest.count} {t("accommodations")}
+                                    </p>
+                                </div>
                             </div>
-                        </div>
+                        </Link>
                     ))}
                 </div>
             </Section>
