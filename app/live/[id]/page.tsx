@@ -1,6 +1,7 @@
 "use client";
 
 import { useParams } from "next/navigation";
+import { useTranslations } from "next-intl";
 import { Container } from "@/components/ui/container";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -155,6 +156,7 @@ const liveData: Record<string, any> = {
 
 export default function LiveCommercePage() {
     const params = useParams();
+    const t = useTranslations("Live");
     const liveId = params.id as string;
     const live = liveData[liveId];
 
@@ -162,11 +164,9 @@ export default function LiveCommercePage() {
         return (
             <Container className="py-8">
                 <div className="text-center py-16">
-                    <h1 className="text-2xl font-bold mb-4">
-                        라이브 방송을 찾을 수 없습니다
-                    </h1>
+                    <h1 className="text-2xl font-bold mb-4">{t("notFound")}</h1>
                     <Link href="/">
-                        <Button>홈으로 돌아가기</Button>
+                        <Button>{t("backToHome")}</Button>
                     </Link>
                 </div>
             </Container>
@@ -194,7 +194,7 @@ export default function LiveCommercePage() {
                 <Link href="/">
                     <Button variant="ghost" size="sm">
                         <ChevronLeft className="h-4 w-4 mr-2" />
-                        뒤로가기
+                        {t("back")}
                     </Button>
                 </Link>
             </Container>

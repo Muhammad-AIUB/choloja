@@ -184,11 +184,9 @@ export default function PromotionPage() {
         return (
             <Container className="py-8">
                 <div className="text-center py-16">
-                    <h1 className="text-2xl font-bold mb-4">
-                        {t('notFound')}
-                    </h1>
+                    <h1 className="text-2xl font-bold mb-4">{t("notFound")}</h1>
                     <Link href="/">
-                        <Button>{t('backToHome')}</Button>
+                        <Button>{t("backToHome")}</Button>
                     </Link>
                 </div>
             </Container>
@@ -209,7 +207,7 @@ export default function PromotionPage() {
                 <Link href="/">
                     <Button variant="ghost" size="sm">
                         <ChevronLeft className="h-4 w-4 mr-2" />
-                        {t('back')}
+                        {t("back")}
                     </Button>
                 </Link>
             </Container>

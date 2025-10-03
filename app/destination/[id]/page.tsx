@@ -183,7 +183,7 @@ const destinationData: Record<string, any> = {
 
 export default function DestinationPage() {
     const params = useParams();
-    const t = useTranslations("Home");
+    const t = useTranslations("Destination");
     const destinationId = params.id as string;
     const destination = destinationData[destinationId];
 
@@ -191,11 +191,9 @@ export default function DestinationPage() {
         return (
             <Container className="py-8">
                 <div className="text-center py-16">
-                    <h1 className="text-2xl font-bold mb-4">
-                        목적지를 찾을 수 없습니다
-                    </h1>
+                    <h1 className="text-2xl font-bold mb-4">{t("notFound")}</h1>
                     <Link href="/">
-                        <Button>홈으로 돌아가기</Button>
+                        <Button>{t("backToHome")}</Button>
                     </Link>
                 </div>
             </Container>
@@ -209,7 +207,7 @@ export default function DestinationPage() {
                 <Link href="/">
                     <Button variant="ghost" size="sm">
                         <ChevronLeft className="h-4 w-4 mr-2" />
-                        뒤로가기
+                        {t("back")}
                     </Button>
                 </Link>
             </Container>

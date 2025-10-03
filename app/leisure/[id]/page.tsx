@@ -118,7 +118,7 @@ const leisureData: Record<string, any> = {
 
 export default function LeisureDetailPage() {
     const params = useParams();
-    const t = useTranslations('Leisure');
+    const t = useTranslations("Leisure");
     const leisureId = params.id as string;
     const leisure = leisureData[leisureId];
     const [selectedDate, setSelectedDate] = useState("");
@@ -128,11 +128,9 @@ export default function LeisureDetailPage() {
         return (
             <Container className="py-8">
                 <div className="text-center py-16">
-                    <h1 className="text-2xl font-bold mb-4">
-                        {t('notFound')}
-                    </h1>
+                    <h1 className="text-2xl font-bold mb-4">{t("notFound")}</h1>
                     <Link href="/">
-                        <Button>{t('backToHome')}</Button>
+                        <Button>{t("backToHome")}</Button>
                     </Link>
                 </div>
             </Container>
@@ -146,7 +144,7 @@ export default function LeisureDetailPage() {
                 <Link href="/">
                     <Button variant="ghost" size="sm">
                         <ChevronLeft className="h-4 w-4 mr-2" />
-                        {t('back')}
+                        {t("back")}
                     </Button>
                 </Link>
             </Container>
