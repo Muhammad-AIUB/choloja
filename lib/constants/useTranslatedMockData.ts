@@ -9,8 +9,6 @@ export function useTranslatedMockData() {
 
     // Helper to resolve nested translation keys
     const resolveKey = (key: string): string => {
-        // Split the key by dots and traverse the translation object
-        const parts = key.split(".");
         return t(key);
     };
 

@@ -15,12 +15,10 @@ interface Banner {
 
 interface BannerCarouselProps {
     banners: Banner[];
-    autoPlayInterval?: number;
 }
 
 export function BannerCarousel({
     banners,
-    autoPlayInterval = 5000,
 }: BannerCarouselProps) {
     const [currentIndex, setCurrentIndex] = useState(0);
 

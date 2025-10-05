@@ -5,12 +5,10 @@ import { useTranslations } from "next-intl";
 import { Container } from "@/components/ui/container";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Card, CardContent } from "@/components/ui/card";
 import {
     ChevronLeft,
     MapPin,
     Clock,
-    Users,
     Calendar,
     Star,
     Heart,
@@ -22,8 +20,28 @@ import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
 
+// Types
+interface LeisureActivity {
+    id: string;
+    title: string;
+    subtitle: string;
+    description: string;
+    images: string[];
+    price: string;
+    originalPrice?: string;
+    discount?: string;
+    badge?: string;
+    rating: number;
+    reviewCount: number;
+    location: string;
+    hours: string;
+    duration: string;
+    included: string[];
+    notIncluded: string[];
+}
+
 // Mock leisure activity data
-const leisureData: Record<string, any> = {
+const leisureData: Record<string, LeisureActivity> = {
     l1: {
         id: "l1",
         title: "★NOL 단독 특가★ 안성팜랜드 입장권",

@@ -10,6 +10,7 @@ import { PromotionCard } from "@/components/home/PromotionCard";
 import { Section } from "@/components/ui/section";
 import { useTranslatedMockData } from "@/lib/constants/useTranslatedMockData";
 import Link from "next/link";
+import Image from "next/image";
 
 export default function Home() {
     const t = useTranslations("Home");
@@ -105,10 +106,11 @@ export default function Home() {
                     ].map((dest) => (
                         <Link key={dest.id} href={`/destination/${dest.id}`}>
                             <div className="group relative aspect-[4/3] cursor-pointer overflow-hidden rounded-xl">
-                                <img
+                                <Image
                                     src={dest.imageUrl}
                                     alt={dest.name}
-                                    className="h-full w-full object-cover transition-transform group-hover:scale-110"
+                                    fill
+                                    className="object-cover transition-transform group-hover:scale-110"
                                 />
                                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
                                 <div className="absolute bottom-6 left-6 text-white">

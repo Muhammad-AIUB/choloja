@@ -14,16 +14,53 @@ import {
     Download,
     Share2,
     Clock,
-    Check,
     Star,
     Crown,
     Ticket,
 } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
+import { LucideIcon } from "lucide-react";
+
+// Types
+interface Coupon {
+    id: string;
+    title: string;
+    description: string;
+    discount: string;
+    validUntil: string;
+    code: string;
+}
+
+interface Prize {
+    id: string;
+    name: string;
+    quantity: string;
+    image: string;
+}
+
+interface Benefit {
+    id: string;
+    icon: LucideIcon;
+    title: string;
+    description: string;
+}
+
+interface Promotion {
+    title: string;
+    subtitle: string;
+    description: string;
+    image: string;
+    badge: string;
+    badgeColor: string;
+    coupons?: Coupon[];
+    prizes?: Prize[];
+    benefits?: Benefit[];
+    monthlyCoupons?: Coupon[];
+}
 
 // Promotion data based on type
-const promotionData: Record<string, any> = {
+const promotionData: Record<string, Promotion> = {
     coupon: {
         title: "최대 5만원 쿠폰팩",
         subtitle: "지금 바로 받아가세요",
@@ -255,7 +292,7 @@ export default function PromotionPage() {
                         <h2 className="text-2xl font-bold mb-6">
                             받을 수 있는 쿠폰
                         </h2>
-                        {promotion.coupons.map((coupon: any) => (
+                        {promotion.coupons?.map((coupon: Coupon) => (
                             <Card
                                 key={coupon.id}
                                 className="hover:shadow-lg transition-shadow"
@@ -328,7 +365,7 @@ export default function PromotionPage() {
                                 당첨 상품
                             </h2>
                             <div className="grid md:grid-cols-2 gap-6">
-                                {promotion.prizes.map((prize: any) => (
+                                {promotion.prizes?.map((prize: Prize) => (
                                     <Card
                                         key={prize.id}
                                         className="overflow-hidden"
@@ -378,7 +415,7 @@ export default function PromotionPage() {
                                 골드 전용 혜택
                             </h2>
                             <div className="grid md:grid-cols-2 gap-6">
-                                {promotion.benefits.map((benefit: any) => {
+                                {promotion.benefits?.map((benefit: Benefit) => {
                                     const IconComponent = benefit.icon;
                                     return (
                                         <Card
@@ -416,7 +453,7 @@ export default function PromotionPage() {
                         <h2 className="text-2xl font-bold mb-6">
                             10월 특별 쿠폰
                         </h2>
-                        {promotion.monthlyCoupons.map((coupon: any) => (
+                        {promotion.monthlyCoupons?.map((coupon: Coupon) => (
                             <Card
                                 key={coupon.id}
                                 className="hover:shadow-lg transition-shadow"

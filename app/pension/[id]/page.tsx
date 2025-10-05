@@ -18,8 +18,6 @@ import {
     Waves,
     Coffee,
     Users,
-    Bed,
-    Calendar,
     Clock,
 } from "lucide-react";
 import Link from "next/link";

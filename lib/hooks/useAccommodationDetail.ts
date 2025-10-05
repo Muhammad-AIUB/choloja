@@ -459,7 +459,7 @@ export function useAccommodationDetail(id: string) {
                 } else {
                     setError("Accommodation not found");
                 }
-            } catch (err) {
+            } catch {
                 setError("Failed to load accommodation details");
             } finally {
                 setLoading(false);

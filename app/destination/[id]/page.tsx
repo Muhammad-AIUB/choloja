@@ -10,8 +10,34 @@ import { ChevronLeft, MapPin, Filter, SlidersHorizontal } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 
+// Types
+interface Listing {
+    id: string;
+    title: string;
+    location: string;
+    imageUrl: string;
+    price: string;
+    originalPrice?: string;
+    discount?: string;
+    rating: number;
+    reviewCount: number;
+    category: string;
+    isFeatured?: boolean;
+}
+
+interface Destination {
+    id: string;
+    name: string;
+    fullName: string;
+    description: string;
+    image: string;
+    count: number;
+    highlights: string[];
+    listings: Listing[];
+}
+
 // Mock destination data
-const destinationData: Record<string, any> = {
+const destinationData: Record<string, Destination> = {
     dest1: {
         id: "dest1",
         name: "제주",
@@ -284,7 +310,7 @@ export default function DestinationPage() {
             {/* Listings Grid */}
             <Container className="pb-12">
                 <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-                    {destination.listings.map((listing: any) => (
+                    {destination.listings.map((listing: Listing) => (
                         <ListingCard key={listing.id} listing={listing} />
                     ))}
                 </div>

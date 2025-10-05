@@ -2,7 +2,6 @@
 
 import { useTranslations } from "next-intl";
 import { Button } from "@/components/ui/button";
-import { Container } from "@/components/ui/container";
 import { Calendar, MapPin, Users, Search } from "lucide-react";
 import { useState } from "react";
 

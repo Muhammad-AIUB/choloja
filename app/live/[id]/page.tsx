@@ -21,8 +21,32 @@ import {
 import Link from "next/link";
 import Image from "next/image";
 
+// Types
+interface Product {
+    id: string;
+    name: string;
+    price: string;
+    originalPrice?: string;
+    discount?: string;
+    image: string;
+}
+
+interface LiveCommerce {
+    id: string;
+    title: string;
+    scheduledAt: string;
+    status: string;
+    thumbnailUrl: string;
+    discount?: string;
+    host: string;
+    hostImage: string;
+    description: string;
+    products: Product[];
+    viewCount?: number;
+}
+
 // Mock live commerce data
-const liveData: Record<string, any> = {
+const liveData: Record<string, LiveCommerce> = {
     lc1: {
         id: "lc1",
         title: "[신화월드x진에어] 한 번에 준비하는 제주 여행 특가!",
@@ -290,7 +314,7 @@ export default function LiveCommercePage() {
                                 라이브 특가 상품
                             </h2>
                             <div className="space-y-4">
-                                {live.products.map((product: any) => (
+                                {live.products.map((product: Product) => (
                                     <Card
                                         key={product.id}
                                         className="hover:shadow-lg transition-shadow"
