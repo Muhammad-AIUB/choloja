@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { useTranslations } from "next-intl";
 import { Container } from "@/components/ui/container";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -147,7 +146,6 @@ const mockFlights: Flight[] = [
 ];
 
 export default function FlightsPage() {
-    const t = useTranslations("Flights");
     const [tripType, setTripType] = useState<"roundtrip" | "oneway">("roundtrip");
     const [from, setFrom] = useState("서울/인천 (ICN)");
     const [to, setTo] = useState("제주 (CJU)");
@@ -156,7 +154,6 @@ export default function FlightsPage() {
     const [passengers, setPassengers] = useState(2);
     const [classType, setClassType] = useState("economy");
     const [showResults, setShowResults] = useState(false);
-    const [selectedFlight, setSelectedFlight] = useState<string | null>(null);
 
     const handleSearch = () => {
         setShowResults(true);
@@ -169,7 +166,6 @@ export default function FlightsPage() {
     };
 
     const handleBookFlight = (flightId: string) => {
-        setSelectedFlight(flightId);
         // Here you would typically navigate to booking page or show booking modal
         alert(`항공권 예약이 시작되었습니다. Flight ID: ${flightId}`);
     };
