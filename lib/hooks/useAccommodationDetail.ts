@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import { AccommodationDetail } from "@/types";
+import { sampleAccommodations } from "@/lib/constants/sampleAccommodations";
 
-// Mock accommodation data
+// Legacy mock accommodation data for backward compatibility
 const mockAccommodations: { [key: string]: AccommodationDetail } = {
     "1": {
         id: "1",
@@ -453,7 +454,14 @@ export function useAccommodationDetail(id: string) {
                 // Simulate network delay
                 await new Promise((resolve) => setTimeout(resolve, 500));
 
-                const data = mockAccommodations[id];
+                // First try to find in sampleAccommodations (new structure)
+                let data = sampleAccommodations.find((acc) => acc.id === id);
+                
+                // Fallback to legacy mock data
+                if (!data) {
+                    data = mockAccommodations[id];
+                }
+
                 if (data) {
                     setAccommodation(data);
                 } else {

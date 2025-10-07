@@ -1,6 +1,6 @@
 "use client";
 
-import { useParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import { useTranslations } from "next-intl";
 import { Container } from "@/components/ui/container";
 import { Button } from "@/components/ui/button";
@@ -29,6 +29,7 @@ import { useAccommodationDetail } from "@/lib/hooks/useAccommodationDetail";
 
 export default function HotelDetailPage() {
     const params = useParams();
+    const router = useRouter();
     const t = useTranslations("HotelDetail");
     const accommodationId = params.id as string;
 
@@ -189,14 +190,15 @@ export default function HotelDetailPage() {
                             </h2>
                             <div className="space-y-4">
                                 {accommodation.rooms.map((room) => (
-                                    <RoomCard
-                                        key={room.id}
-                                        room={room}
-                                        onBookingClick={() => {
-                                            console.log("Booking room:", room);
-                                            // TODO: Open booking modal
-                                        }}
-                                    />
+                                <RoomCard
+                                    key={room.id}
+                                    room={room}
+                                    onBookingClick={() => {
+                                        router.push(
+                                            `/booking/${accommodationId}/${room.id}`
+                                        );
+                                    }}
+                                />
                                 ))}
                             </div>
                         </div>
