@@ -1,13 +1,20 @@
 "use client";
 
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import { Container } from "@/components/ui/container";
 import { Button } from "@/components/ui/button";
 import { AccommodationRegistration, RoomRegistration } from "@/types";
-import { Plus, X, Upload, Save } from "lucide-react";
+import { Plus, X, Upload, Save, Loader2, CheckCircle, XCircle } from "lucide-react";
 
 export default function RegisterAccommodationPage() {
+    const router = useRouter();
     const [currentStep, setCurrentStep] = useState(1);
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [submitStatus, setSubmitStatus] = useState<{
+        type: "success" | "error" | null;
+        message: string;
+    }>({ type: null, message: "" });
     const [formData, setFormData] = useState<AccommodationRegistration>({
         basicInfo: {
             name: "",
@@ -107,17 +114,59 @@ export default function RegisterAccommodationPage() {
         setFormData({ ...formData, amenities });
     };
 
-    const handleSubmit = (status: "draft" | "pending_review") => {
-        const submissionData = {
-            ...formData,
-            status,
-            createdAt: new Date().toISOString(),
-            updatedAt: new Date().toISOString(),
-        };
-        console.log("Submitting accommodation:", submissionData);
-        alert(
-            `Accommodation ${status === "draft" ? "saved as draft" : "submitted for review"}!`
-        );
+    const handleSubmit = async (status: "draft" | "pending_review") => {
+        setIsSubmitting(true);
+        setSubmitStatus({ type: null, message: "" });
+
+        try {
+            // Get token from localStorage (or cookies in production)
+            const token = localStorage.getItem("token");
+            
+            if (!token) {
+                setSubmitStatus({
+                    type: "error",
+                    message: "Please login first to register accommodation",
+                });
+                setIsSubmitting(false);
+                setTimeout(() => router.push("/auth/login"), 2000);
+                return;
+            }
+
+            const response = await fetch("/api/accommodations", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${token}`,
+                },
+                body: JSON.stringify({
+                    ...formData,
+                    status,
+                }),
+            });
+
+            const data = await response.json();
+
+            if (!response.ok) {
+                throw new Error(data.error || "Failed to register accommodation");
+            }
+
+            setSubmitStatus({
+                type: "success",
+                message: `Accommodation ${status === "draft" ? "saved as draft" : "submitted for review"} successfully! ✅`,
+            });
+
+            // Redirect after 2 seconds
+            setTimeout(() => {
+                router.push("/");
+            }, 2000);
+        } catch (error) {
+            setSubmitStatus({
+                type: "error",
+                message: error instanceof Error ? error.message : "Failed to submit. Please try again.",
+            });
+        } finally {
+            setIsSubmitting(false);
+        }
     };
 
     return (
@@ -132,6 +181,32 @@ export default function RegisterAccommodationPage() {
                         Complete all sections to list your property on NOL
                     </p>
                 </div>
+
+                {/* Status Message */}
+                {submitStatus.type && (
+                    <div
+                        className={`mb-6 p-4 rounded-lg flex items-center gap-3 ${
+                            submitStatus.type === "success"
+                                ? "bg-green-50 border border-green-200"
+                                : "bg-red-50 border border-red-200"
+                        }`}
+                    >
+                        {submitStatus.type === "success" ? (
+                            <CheckCircle className="h-5 w-5 text-green-600" />
+                        ) : (
+                            <XCircle className="h-5 w-5 text-red-600" />
+                        )}
+                        <p
+                            className={`font-medium ${
+                                submitStatus.type === "success"
+                                    ? "text-green-800"
+                                    : "text-red-800"
+                            }`}
+                        >
+                            {submitStatus.message}
+                        </p>
+                    </div>
+                )}
 
                 {/* Progress Steps */}
                 <div className="bg-white rounded-xl p-6 shadow-sm mb-6">
@@ -743,20 +818,30 @@ export default function RegisterAccommodationPage() {
                                     type="button"
                                     variant="outline"
                                     onClick={() => handleSubmit("draft")}
+                                    disabled={isSubmitting}
                                     className="flex items-center gap-2"
                                 >
-                                    <Save className="h-4 w-4" />
-                                    Save Draft
+                                    {isSubmitting ? (
+                                        <Loader2 className="h-4 w-4 animate-spin" />
+                                    ) : (
+                                        <Save className="h-4 w-4" />
+                                    )}
+                                    {isSubmitting ? "Saving..." : "Save Draft"}
                                 </Button>
                                 <Button
                                     type="button"
                                     onClick={() =>
                                         handleSubmit("pending_review")
                                     }
+                                    disabled={isSubmitting}
                                     className="bg-gradient-to-r from-pink-500 to-purple-600 flex items-center gap-2"
                                 >
-                                    <Upload className="h-4 w-4" />
-                                    Submit for Review
+                                    {isSubmitting ? (
+                                        <Loader2 className="h-4 w-4 animate-spin" />
+                                    ) : (
+                                        <Upload className="h-4 w-4" />
+                                    )}
+                                    {isSubmitting ? "Submitting..." : "Submit for Review"}
                                 </Button>
                             </div>
                         )}

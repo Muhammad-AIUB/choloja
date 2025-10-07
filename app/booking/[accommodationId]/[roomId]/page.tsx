@@ -6,7 +6,7 @@ import { Container } from "@/components/ui/container";
 import { BookingStepIndicator } from "@/components/booking/BookingStepIndicator";
 import { GuestInfoForm } from "@/components/booking/GuestInfoForm";
 import { PaymentForm } from "@/components/booking/PaymentForm";
-import { sampleAccommodations } from "@/lib/constants/sampleAccommodations";
+import { useAccommodationDetail } from "@/lib/hooks/useAccommodationDetail";
 import {
     GuestInfo,
     PaymentInfo,
@@ -30,21 +30,26 @@ export default function BookingPage() {
     const [currentStep, setCurrentStep] = useState(2); // Start at guest info
     const [guestInfo, setGuestInfo] = useState<GuestInfo | null>(null);
 
-    // Get accommodation and room data
-    const accommodation = sampleAccommodations.find(
-        (acc) => acc.id === accommodationId
-    );
+    // Fetch accommodation data
+    const { accommodation, loading } = useAccommodationDetail(accommodationId);
     const room = accommodation?.rooms.find((r) => r.id === roomId);
 
-    // Mock booking details (in real app, would come from URL params or state)
+    // Calculate booking details
+    const roomPricePerNight = room ? parseInt(room.price.replace(/[^0-9]/g, "")) : 0;
+    const nights = 3; // Default, could come from URL params
+    const subtotal = roomPricePerNight * nights;
+    const tax = Math.round(subtotal * 0.1);
+    const serviceFee = Math.round(subtotal * 0.05);
+    const total = subtotal + tax + serviceFee;
+
     const bookingDetails: BookingDetails = {
         accommodationId: accommodationId,
-        accommodationName: accommodation?.title || "",
+        accommodationName: accommodation?.title || "Loading...",
         roomId: roomId,
-        roomName: room?.name || "",
+        roomName: room?.name || "Loading...",
         checkInDate: "2025-10-15",
         checkOutDate: "2025-10-18",
-        nights: 3,
+        nights: nights,
         guests: {
             adults: 2,
             children: 0,
@@ -58,18 +63,9 @@ export default function BookingPage() {
         },
     };
 
-    // Calculate pricing
-    const roomPricePerNight = parseInt(
-        room?.price.replace(/[^0-9]/g, "") || "0"
-    );
-    const subtotal = roomPricePerNight * bookingDetails.nights;
-    const tax = Math.round(subtotal * 0.1);
-    const serviceFee = Math.round(subtotal * 0.05);
-    const total = subtotal + tax + serviceFee;
-
     const pricing: PricingBreakdown = {
         roomPrice: roomPricePerNight,
-        nights: bookingDetails.nights,
+        nights: nights,
         subtotal,
         tax,
         serviceFee,
@@ -110,6 +106,42 @@ export default function BookingPage() {
                     </button>
                 </div>
             </Container>
+        );
+    }
+
+    // Show loading state
+    if (loading) {
+        return (
+            <div className="min-h-screen bg-gray-50 py-8">
+                <Container>
+                    <div className="animate-pulse space-y-6">
+                        <div className="h-8 w-64 bg-gray-200 rounded" />
+                        <div className="h-96 bg-gray-200 rounded-xl" />
+                    </div>
+                </Container>
+            </div>
+        );
+    }
+
+    // Show error if accommodation or room not found
+    if (!accommodation || !room) {
+        return (
+            <div className="min-h-screen bg-gray-50 py-8">
+                <Container>
+                    <div className="bg-white rounded-xl p-8 text-center">
+                        <h2 className="text-2xl font-bold mb-4">Room Not Found</h2>
+                        <p className="text-gray-600 mb-6">
+                            The room you&apos;re trying to book doesn&apos;t exist or is no longer available.
+                        </p>
+                        <button
+                            onClick={() => router.push("/")}
+                            className="px-6 py-3 bg-gradient-to-r from-pink-500 to-purple-600 text-white rounded-lg font-medium hover:from-pink-600 hover:to-purple-700 transition-all"
+                        >
+                            Back to Home
+                        </button>
+                    </div>
+                </Container>
+            </div>
         );
     }
 

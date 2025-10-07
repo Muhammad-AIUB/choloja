@@ -1,11 +1,29 @@
 "use client";
 
 import { Container } from "@/components/ui/container";
-import { sampleAccommodations } from "@/lib/constants/sampleAccommodations";
 import { Star, MapPin } from "lucide-react";
 import Link from "next/link";
+import { useEffect, useState } from "react";
+import { AccommodationEntity } from "@/lib/domain/entities/Accommodation.entity";
 
 export default function Home() {
+    const [accommodations, setAccommodations] = useState<AccommodationEntity[]>([]);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        fetch("/api/accommodations")
+            .then((res) => res.json())
+            .then((response) => {
+                // API returns { success: true, data: { accommodations: [...], pagination: {...} } }
+                setAccommodations(response.data?.accommodations || []);
+                setLoading(false);
+            })
+            .catch((error) => {
+                console.error("Failed to fetch accommodations:", error);
+                setLoading(false);
+            });
+    }, []);
+
     return (
         <main className="min-h-screen bg-gray-50">
             {/* Hero Section */}
@@ -33,76 +51,86 @@ export default function Home() {
                     </p>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    {sampleAccommodations.map((accommodation) => (
-                        <Link
-                            key={accommodation.id}
-                            href={`/hotel/${accommodation.id}`}
-                            className="group"
-                        >
-                            <div className="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-shadow">
-                                {/* Image */}
-                                <div className="relative h-56 overflow-hidden">
-                                    <div
-                                        style={{
-                                            backgroundImage: `url(${accommodation.images[0]})`,
-                                            backgroundSize: 'cover',
-                                            backgroundPosition: 'center'
-                                        }}
-                                        className="w-full h-full group-hover:scale-105 transition-transform duration-300"
-                                    />
-                                    {accommodation.badges &&
-                                        accommodation.badges.length > 0 && (
-                                            <div className="absolute top-3 left-3">
-                                                <span className="bg-gradient-to-r from-pink-500 to-purple-600 text-white px-3 py-1 rounded-full text-xs font-medium">
-                                                    {accommodation.badges[0]}
+                {loading ? (
+                    <div className="text-center py-12">
+                        <p className="text-gray-500">Loading accommodations...</p>
+                    </div>
+                ) : accommodations.length === 0 ? (
+                    <div className="text-center py-12 bg-white rounded-xl shadow-sm">
+                        <p className="text-gray-500 mb-4">No accommodations available yet.</p>
+                        <Link href="/admin/register-accommodation">
+                            <button className="px-6 py-3 bg-gradient-to-r from-pink-500 to-purple-600 text-white rounded-lg font-medium hover:from-pink-600 hover:to-purple-700 transition-all">
+                                Register First Property
+                            </button>
+                        </Link>
+                    </div>
+                ) : (
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        {accommodations.map((accommodation) => (
+                            <Link
+                                key={accommodation.id}
+                                href={`/hotel/${accommodation.id}`}
+                                className="group"
+                            >
+                                <div className="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-shadow">
+                                    {/* Image */}
+                                    <div className="relative h-56 overflow-hidden">
+                                        <div
+                                            style={{
+                                                backgroundImage: `url(${accommodation.images.main[0] || accommodation.images.gallery[0] || '/placeholder.jpg'})`,
+                                                backgroundSize: 'cover',
+                                                backgroundPosition: 'center'
+                                            }}
+                                            className="w-full h-full group-hover:scale-105 transition-transform duration-300"
+                                        />
+                                    </div>
+
+                                    {/* Content */}
+                                    <div className="p-5">
+                                        <h3 className="text-lg font-bold text-gray-900 mb-2 group-hover:text-pink-600 transition-colors">
+                                            {accommodation.basicInfo.name}
+                                        </h3>
+
+                                        <div className="flex items-center gap-1 text-sm text-gray-600 mb-3">
+                                            <MapPin className="h-4 w-4" />
+                                            <span>{accommodation.location.city}, {accommodation.location.state}</span>
+                                        </div>
+
+                                        <div className="flex items-center gap-2 mb-4">
+                                            <div className="flex items-center gap-1">
+                                                <Star className="h-4 w-4 fill-yellow-400 text-yellow-400" />
+                                                <span className="font-semibold text-gray-900">
+                                                    {accommodation.averageRating.toFixed(1)}
                                                 </span>
                                             </div>
-                                        )}
-                                </div>
-
-                                {/* Content */}
-                                <div className="p-5">
-                                    <h3 className="text-lg font-bold text-gray-900 mb-2 group-hover:text-pink-600 transition-colors">
-                                        {accommodation.title}
-                                    </h3>
-
-                                    <div className="flex items-center gap-1 text-sm text-gray-600 mb-3">
-                                        <MapPin className="h-4 w-4" />
-                                        <span>{accommodation.location}</span>
-                                    </div>
-
-                                    <div className="flex items-center gap-2 mb-4">
-                                        <div className="flex items-center gap-1">
-                                            <Star className="h-4 w-4 fill-yellow-400 text-yellow-400" />
-                                            <span className="font-semibold text-gray-900">
-                                                {accommodation.rating}
+                                            <span className="text-sm text-gray-500">
+                                                ({accommodation.totalReviews.toLocaleString()} reviews)
                                             </span>
                                         </div>
-                                        <span className="text-sm text-gray-500">
-                                            ({accommodation.reviewCount.toLocaleString()}{" "}
-                                            reviews)
-                                        </span>
-                                    </div>
 
-                                    <div className="flex items-center justify-between pt-3 border-t">
-                                        <div>
-                                            <p className="text-xs text-gray-500 mb-1">
-                                                Starting from
-                                            </p>
-                                            <p className="text-xl font-bold text-pink-600">
-                                                {accommodation.priceRange.split(" - ")[0]}
-                                            </p>
+                                        <div className="flex items-center justify-between pt-3 border-t">
+                                            <div>
+                                                <p className="text-xs text-gray-500 mb-1">
+                                                    Starting from
+                                                </p>
+                                                <p className="text-xl font-bold text-pink-600">
+                                                    {new Intl.NumberFormat('ko-KR', {
+                                                        style: 'currency',
+                                                        currency: accommodation.pricing.currency,
+                                                        minimumFractionDigits: 0
+                                                    }).format(Math.min(...accommodation.rooms.map(r => r.basePrice)))}
+                                                </p>
+                                            </div>
+                                            <button className="px-4 py-2 bg-gradient-to-r from-pink-500 to-purple-600 text-white rounded-lg text-sm font-medium hover:from-pink-600 hover:to-purple-700 transition-all">
+                                                View Details
+                                            </button>
                                         </div>
-                                        <button className="px-4 py-2 bg-gradient-to-r from-pink-500 to-purple-600 text-white rounded-lg text-sm font-medium hover:from-pink-600 hover:to-purple-700 transition-all">
-                                            View Details
-                                        </button>
                                     </div>
                                 </div>
-                            </div>
-                        </Link>
-                    ))}
-                </div>
+                            </Link>
+                        ))}
+                    </div>
+                )}
             </Container>
 
             {/* CTA Section */}

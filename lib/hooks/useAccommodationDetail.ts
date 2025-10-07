@@ -1,6 +1,50 @@
 import { useEffect, useState } from "react";
 import { AccommodationDetail } from "@/types";
-import { sampleAccommodations } from "@/lib/constants/sampleAccommodations";
+import { AccommodationEntity } from "@/lib/domain/entities/Accommodation.entity";
+
+// Helper to convert API entity to frontend type
+function convertToAccommodationDetail(entity: AccommodationEntity): AccommodationDetail {
+    return {
+        id: entity.id,
+        title: entity.basicInfo.name,
+        location: `${entity.location.city}, ${entity.location.state}`,
+        address: entity.location.address,
+        rating: entity.averageRating,
+        reviewCount: entity.totalReviews,
+        description: entity.basicInfo.description,
+        images: [...entity.images.main, ...entity.images.gallery],
+        priceRange: `₩${Math.min(...entity.rooms.map(r => r.basePrice)).toLocaleString()} - ₩${Math.max(...entity.rooms.map(r => r.basePrice)).toLocaleString()}`,
+        checkInTime: entity.policies.checkInTime || "15:00",
+        checkOutTime: entity.policies.checkOutTime || "11:00",
+        badges: entity.basicInfo.starRating ? [`${entity.basicInfo.starRating} Star`] : [],
+        amenities: entity.amenities.map(name => ({ id: name, name, icon: "Check", category: "basic" })),
+        rooms: entity.rooms.map(room => ({
+            id: room.id,
+            name: room.name,
+            description: room.description,
+            images: room.images.length > 0 ? room.images : entity.images.main,
+            capacity: room.capacity,
+            bedType: room.bedType,
+            size: room.size,
+            price: `₩${room.basePrice.toLocaleString()}`,
+            checkInTime: entity.policies.checkInTime || "15:00",
+            checkOutTime: entity.policies.checkOutTime || "11:00",
+            amenities: room.amenities,
+            availability: room.availability ? "available" : "soldout",
+            remainingRooms: room.quantity,
+            cancellationPolicy: entity.policies.cancellationPolicy || "Standard cancellation policy applies",
+        })),
+        reviews: [],
+        aiReviewSummary: `${entity.basicInfo.name} is rated ${entity.averageRating.toFixed(1)} stars with ${entity.totalReviews} reviews.`,
+        policies: {
+            cancellation: entity.policies.cancellationPolicy || "Standard policy",
+            children: entity.policies.childrenPolicy || "Children allowed",
+            pets: entity.policies.petsPolicy || "Contact property",
+            smoking: entity.policies.smokingPolicy || "Non-smoking",
+        },
+        nearbyAttractions: [],
+    };
+}
 
 // Legacy mock accommodation data for backward compatibility
 const mockAccommodations: { [key: string]: AccommodationDetail } = {
@@ -445,30 +489,36 @@ export function useAccommodationDetail(id: string) {
     const [error, setError] = useState<string | null>(null);
 
     useEffect(() => {
-        // Simulate API call
         const fetchAccommodation = async () => {
             setLoading(true);
             setError(null);
 
             try {
-                // Simulate network delay
-                await new Promise((resolve) => setTimeout(resolve, 500));
-
-                // First try to find in sampleAccommodations (new structure)
-                let data = sampleAccommodations.find((acc) => acc.id === id);
+                // Try to fetch from API first
+                const response = await fetch(`/api/accommodations/${id}`);
                 
-                // Fallback to legacy mock data
-                if (!data) {
-                    data = mockAccommodations[id];
+                if (response.ok) {
+                    const apiData = await response.json();
+                    const converted = convertToAccommodationDetail(apiData.data);
+                    setAccommodation(converted);
+                    return;
                 }
 
-                if (data) {
-                    setAccommodation(data);
+                // Fallback to mock data if API fails
+                const mockData = mockAccommodations[id];
+                if (mockData) {
+                    setAccommodation(mockData);
                 } else {
                     setError("Accommodation not found");
                 }
             } catch {
-                setError("Failed to load accommodation details");
+                // Fallback to mock data on error
+                const mockData = mockAccommodations[id];
+                if (mockData) {
+                    setAccommodation(mockData);
+                } else {
+                    setError("Failed to load accommodation details");
+                }
             } finally {
                 setLoading(false);
             }
