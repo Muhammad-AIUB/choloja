@@ -247,7 +247,7 @@ export function RoomCard({ room, onBookingClick }: RoomCardProps) {
                             onClick={() => onBookingClick(room)}
                             disabled={room.availability === "soldout"}
                             size="lg"
-                            className="min-w-[120px]"
+                            className="min-w-[120px] bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 text-white hover:shadow-lg transition-all duration-300 cursor-pointer disabled:from-gray-400 disabled:to-gray-500 disabled:cursor-not-allowed"
                         >
                             {room.availability === "soldout"
                                 ? t("soldOut")

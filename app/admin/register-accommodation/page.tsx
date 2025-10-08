@@ -221,10 +221,10 @@ export default function RegisterAccommodationPage() {
                             <button
                                 key={index}
                                 onClick={() => setCurrentStep(index + 1)}
-                                className={`flex-1 py-2 px-4 text-sm font-medium transition-colors ${
+                                className={`flex-1 py-2 px-4 text-sm font-medium transition-all duration-300 cursor-pointer ${
                                     currentStep === index + 1
                                         ? "text-pink-600 border-b-2 border-pink-600"
-                                        : "text-gray-500 border-b-2 border-transparent hover:text-gray-700"
+                                        : "text-gray-500 border-b-2 border-transparent hover:text-gray-700 hover:bg-gray-50"
                                 }`}
                             >
                                 {step}
@@ -568,7 +568,7 @@ export default function RegisterAccommodationPage() {
                                     <Button
                                         type="button"
                                         onClick={addRoom}
-                                        className="flex items-center gap-2 bg-gradient-to-r from-pink-500 to-purple-600"
+                                        className="flex items-center gap-2 bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 text-white hover:shadow-lg transition-all duration-300 cursor-pointer"
                                     >
                                         <Plus className="h-4 w-4" />
                                         Add Room Type
@@ -598,7 +598,7 @@ export default function RegisterAccommodationPage() {
                                                         onClick={() =>
                                                             removeRoom(index)
                                                         }
-                                                        className="text-red-600 hover:text-red-700"
+                                                        className="text-red-600 hover:text-red-700 hover:bg-red-50 p-1 rounded transition-all duration-300 cursor-pointer"
                                                     >
                                                         <X className="h-5 w-5" />
                                                     </button>
@@ -807,7 +807,7 @@ export default function RegisterAccommodationPage() {
                             <Button
                                 type="button"
                                 onClick={() => setCurrentStep(currentStep + 1)}
-                                className="bg-gradient-to-r from-pink-500 to-purple-600"
+                                className="bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 text-white hover:shadow-lg transition-all duration-300 cursor-pointer"
                             >
                                 Next
                             </Button>
@@ -834,7 +834,7 @@ export default function RegisterAccommodationPage() {
                                         handleSubmit("pending_review")
                                     }
                                     disabled={isSubmitting}
-                                    className="bg-gradient-to-r from-pink-500 to-purple-600 flex items-center gap-2"
+                                    className="bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 text-white hover:shadow-lg transition-all duration-300 cursor-pointer disabled:cursor-not-allowed disabled:opacity-50 flex items-center gap-2"
                                 >
                                     {isSubmitting ? (
                                         <Loader2 className="h-4 w-4 animate-spin" />

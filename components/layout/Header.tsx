@@ -32,7 +32,7 @@ export function Header() {
                         <Button
                             variant="ghost"
                             size="icon"
-                            className="hidden sm:flex"
+                            className="hidden sm:flex hover:bg-pink-50 hover:text-pink-600 transition-all duration-300 cursor-pointer"
                             aria-label={t("search")}
                         >
                             <Search className="h-5 w-5" />
@@ -40,6 +40,7 @@ export function Header() {
                         <Button
                             variant="ghost"
                             size="icon"
+                            className="hover:bg-pink-50 hover:text-pink-600 transition-all duration-300 cursor-pointer"
                             aria-label={t("cart")}
                         >
                             <ShoppingCart className="h-5 w-5" />
@@ -47,6 +48,7 @@ export function Header() {
                         <Button
                             variant="ghost"
                             size="icon"
+                            className="hover:bg-pink-50 hover:text-pink-600 transition-all duration-300 cursor-pointer"
                             aria-label={t("user")}
                         >
                             <User className="h-5 w-5" />

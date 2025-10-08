@@ -1,10 +1,12 @@
 "use client";
 
-import { useParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import Link from "next/link";
+import { useState } from "react";
 import { Container } from "@/components/ui/container";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { CancelBookingModal } from "@/components/booking/CancelBookingModal";
 import {
     CheckCircle,
     Calendar,
@@ -14,11 +16,16 @@ import {
     Phone,
     Download,
     Share2,
+    XCircle,
 } from "lucide-react";
 
 export default function BookingConfirmationPage() {
     const params = useParams();
+    const router = useRouter();
     const bookingId = params.bookingId as string;
+    
+    const [isCancelModalOpen, setIsCancelModalOpen] = useState(false);
+    const [bookingStatus, setBookingStatus] = useState<"confirmed" | "cancelled">("confirmed");
 
     // Mock booking data (in real app, would fetch from API)
     const booking = {
@@ -55,6 +62,29 @@ export default function BookingConfirmationPage() {
         createdAt: new Date().toISOString(),
     };
 
+    const handleCancelBooking = async () => {
+        try {
+            // In real app, would call API to cancel booking
+            // const response = await fetch(`/api/bookings/${bookingId}`, {
+            //     method: 'PATCH',
+            //     headers: {
+            //         'Authorization': `Bearer ${token}`,
+            //     },
+            // });
+            // if (!response.ok) throw new Error('Failed to cancel booking');
+            
+            setBookingStatus("cancelled");
+            // Show success message or redirect
+            setTimeout(() => {
+                router.push("/bookings");
+            }, 2000);
+        } catch (error) {
+            throw error;
+        }
+    };
+
+    const canCancel = bookingStatus === "confirmed";
+
     return (
         <div className="min-h-screen bg-gray-50 py-12">
             <Container className="max-w-4xl">
@@ -82,9 +112,15 @@ export default function BookingConfirmationPage() {
                                     {booking.bookingNumber}
                                 </p>
                             </div>
-                            <Badge className="bg-green-100 text-green-700 border-green-300">
-                                Confirmed
-                            </Badge>
+                            {bookingStatus === "confirmed" ? (
+                                <Badge className="bg-green-100 text-green-700 border-green-300">
+                                    Confirmed
+                                </Badge>
+                            ) : (
+                                <Badge className="bg-red-100 text-red-700 border-red-300">
+                                    Cancelled
+                                </Badge>
+                            )}
                         </div>
                         <div className="mt-3">
                             <p className="text-sm text-gray-500">
@@ -235,6 +271,33 @@ export default function BookingConfirmationPage() {
                     </Button>
                 </div>
 
+                {/* Cancel Booking Button */}
+                {canCancel && (
+                    <div className="mb-8">
+                        <Button
+                            variant="outline"
+                            onClick={() => setIsCancelModalOpen(true)}
+                            className="w-full flex items-center justify-center gap-2 text-red-600 border-red-300 hover:bg-red-50 hover:border-red-500"
+                        >
+                            <XCircle className="h-4 w-4" />
+                            Cancel Booking
+                        </Button>
+                    </div>
+                )}
+
+                {/* Cancelled Message */}
+                {bookingStatus === "cancelled" && (
+                    <div className="bg-red-50 border border-red-200 rounded-xl p-6 mb-8">
+                        <div className="flex items-center gap-3 mb-2">
+                            <XCircle className="h-6 w-6 text-red-600" />
+                            <h3 className="font-bold text-red-900">Booking Cancelled</h3>
+                        </div>
+                        <p className="text-sm text-red-800">
+                            Your booking has been cancelled successfully. Refund will be processed within 5-7 business days.
+                        </p>
+                    </div>
+                )}
+
                 {/* Important Information */}
                 <div className="bg-blue-50 rounded-xl p-6 mb-8">
                     <h3 className="font-bold text-blue-900 mb-3">
@@ -270,6 +333,15 @@ export default function BookingConfirmationPage() {
                         </Button>
                     </Link>
                 </div>
+
+                {/* Cancel Booking Modal */}
+                <CancelBookingModal
+                    isOpen={isCancelModalOpen}
+                    onClose={() => setIsCancelModalOpen(false)}
+                    onConfirm={handleCancelBooking}
+                    bookingNumber={booking.bookingNumber}
+                    hotelName={booking.accommodation.name}
+                />
             </Container>
         </div>
     );

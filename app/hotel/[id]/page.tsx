@@ -25,6 +25,7 @@ import { useState } from "react";
 import { AccommodationGallery } from "@/components/accommodation/AccommodationGallery";
 import { RoomCard } from "@/components/accommodation/RoomCard";
 import { ReviewsSection } from "@/components/accommodation/ReviewsSection";
+import { GoogleMap } from "@/components/accommodation/GoogleMap";
 import { useAccommodationDetail } from "@/lib/hooks/useAccommodationDetail";
 
 export default function HotelDetailPage() {
@@ -64,7 +65,9 @@ export default function HotelDetailPage() {
                 <div className="text-center py-16">
                     <h1 className="text-2xl font-bold mb-4">{t("notFound")}</h1>
                     <Link href="/">
-                        <Button>{t("backToHome")}</Button>
+                        <Button className="bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 text-white hover:shadow-lg transition-all duration-300">
+                            {t("backToHome")}
+                        </Button>
                     </Link>
                 </div>
             </Container>
@@ -124,10 +127,18 @@ export default function HotelDetailPage() {
                                     </div>
                                 </div>
                                 <div className="flex gap-2">
-                                    <Button variant="outline" size="icon">
+                                    <Button 
+                                        variant="outline" 
+                                        size="icon"
+                                        className="hover:bg-pink-50 hover:border-pink-500 hover:text-pink-600 transition-all duration-300 cursor-pointer"
+                                    >
                                         <Share2 className="h-4 w-4" />
                                     </Button>
-                                    <Button variant="outline" size="icon">
+                                    <Button 
+                                        variant="outline" 
+                                        size="icon"
+                                        className="hover:bg-pink-50 hover:border-pink-500 hover:text-pink-600 transition-all duration-300 cursor-pointer"
+                                    >
                                         <Heart className="h-4 w-4" />
                                     </Button>
                                 </div>
@@ -228,11 +239,13 @@ export default function HotelDetailPage() {
                                     </span>
                                 </div>
                             </div>
-                            <div className="aspect-video bg-gray-100 rounded-lg overflow-hidden">
-                                <div className="w-full h-full flex items-center justify-center text-gray-400">
-                                    {t("mapPlaceholder")}
-                                </div>
-                            </div>
+                            <GoogleMap
+                                name={accommodation.title}
+                                address={accommodation.address}
+                                city={accommodation.location.split(',')[0].trim()}
+                                state={accommodation.location.split(',')[1]?.trim() || accommodation.location.split(',')[0].trim()}
+                                country="South Korea"
+                            />
                         </div>
 
                         {/* Check-in Info */}

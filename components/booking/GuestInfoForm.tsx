@@ -221,13 +221,13 @@ export function GuestInfoForm({
                     type="button"
                     variant="outline"
                     onClick={onBack}
-                    className="flex-1"
+                    className="flex-1 hover:bg-gray-50 transition-all duration-300 cursor-pointer"
                 >
                     Back
                 </Button>
                 <Button
                     type="submit"
-                    className="flex-1 bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700"
+                    className="flex-1 bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 text-white hover:shadow-lg transition-all duration-300 cursor-pointer"
                 >
                     Continue to Payment
                 </Button>

@@ -2,6 +2,7 @@ import { Container } from "@/components/ui/container";
 import { Star, MapPin } from "lucide-react";
 import Link from "next/link";
 import { AccommodationRepository } from "@/lib/infrastructure/repositories/AccommodationRepository";
+import { HeroSection } from "@/components/home/HeroSection";
 
 // Revalidate every 60 seconds (ISR)
 export const revalidate = 60;
@@ -26,22 +27,12 @@ export default async function Home() {
 
     return (
         <main className="min-h-screen bg-gray-50">
-            {/* Hero Section */}
-            <div className="bg-gradient-to-br from-pink-50 via-purple-50 to-blue-50 py-16">
-                <Container>
-                    <div className="text-center">
-                        <h1 className="text-4xl md:text-6xl font-bold text-gray-900 mb-4">
-                            Find Your Perfect Stay
-                        </h1>
-                        <p className="text-lg md:text-xl text-gray-600 mb-8">
-                            Book accommodations with ease
-                        </p>
-                    </div>
-                </Container>
-            </div>
+            {/* Hero Section with Beach Images */}
+            <HeroSection />
 
             {/* Accommodations Listing */}
-            <Container className="py-12">
+            <div id="accommodations">
+                <Container className="py-12">
                 <div className="mb-8">
                     <h2 className="text-2xl md:text-3xl font-bold mb-2">
                         Featured Accommodations
@@ -55,7 +46,7 @@ export default async function Home() {
                     <div className="text-center py-12 bg-white rounded-xl shadow-sm">
                         <p className="text-gray-500 mb-4">No accommodations available yet.</p>
                         <Link href="/admin/register-accommodation">
-                            <button className="px-6 py-3 bg-gradient-to-r from-pink-500 to-purple-600 text-white rounded-lg font-medium hover:from-pink-600 hover:to-purple-700 transition-all">
+                            <button className="px-6 py-3 bg-gradient-to-r from-pink-500 to-purple-600 text-white rounded-lg font-medium hover:from-pink-600 hover:to-purple-700 hover:shadow-lg transition-all duration-300 cursor-pointer">
                                 Register First Property
                             </button>
                         </Link>
@@ -66,9 +57,9 @@ export default async function Home() {
                             <Link
                                 key={accommodation.id}
                                 href={`/hotel/${accommodation.id}`}
-                                className="group"
+                                className="group block cursor-pointer"
                             >
-                                <div className="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-shadow">
+                                <div className="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
                                     {/* Image */}
                                     <div className="relative h-56 overflow-hidden">
                                         <div
@@ -117,9 +108,9 @@ export default async function Home() {
                                                     }).format(Math.min(...accommodation.rooms.map(r => r.basePrice)))}
                                                 </p>
                                             </div>
-                                            <button className="px-4 py-2 bg-gradient-to-r from-pink-500 to-purple-600 text-white rounded-lg text-sm font-medium hover:from-pink-600 hover:to-purple-700 transition-all">
+                                            <span className="px-4 py-2 bg-gradient-to-r from-pink-500 to-purple-600 text-white rounded-lg text-sm font-medium group-hover:from-pink-600 group-hover:to-purple-700 group-hover:shadow-lg transition-all duration-300 cursor-pointer inline-block">
                                                 View Details
-                                            </button>
+                                            </span>
                                         </div>
                                     </div>
                                 </div>
@@ -127,7 +118,8 @@ export default async function Home() {
                         ))}
                     </div>
                 )}
-            </Container>
+                </Container>
+            </div>
 
             {/* CTA Section */}
             <div className="bg-gradient-to-r from-pink-500 to-purple-600 py-16 mt-12">
@@ -140,7 +132,7 @@ export default async function Home() {
                             Browse our accommodations and make a reservation today
                         </p>
                         <Link href="/admin/register-accommodation">
-                            <button className="bg-white text-pink-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
+                            <button className="bg-white text-pink-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 hover:shadow-xl hover:scale-105 transition-all duration-300 cursor-pointer">
                                 Register Your Property
                             </button>
                         </Link>

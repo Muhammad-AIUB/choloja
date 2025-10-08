@@ -5,6 +5,7 @@ import Link from "next/link";
 import { Container } from "@/components/ui/container";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { CancelBookingModal } from "@/components/booking/CancelBookingModal";
 import {
     Calendar,
     MapPin,
@@ -12,6 +13,7 @@ import {
     Clock,
     Filter,
     Search,
+    XCircle,
 } from "lucide-react";
 
 type BookingStatus = "confirmed" | "pending" | "cancelled" | "completed";
@@ -99,8 +101,11 @@ const mockBookings: UserBooking[] = [
 export default function BookingsPage() {
     const [selectedStatus, setSelectedStatus] = useState<string>("all");
     const [searchQuery, setSearchQuery] = useState("");
+    const [isCancelModalOpen, setIsCancelModalOpen] = useState(false);
+    const [selectedBookingForCancel, setSelectedBookingForCancel] = useState<UserBooking | null>(null);
+    const [bookings, setBookings] = useState<UserBooking[]>(mockBookings);
 
-    const filteredBookings = mockBookings.filter((booking) => {
+    const filteredBookings = bookings.filter((booking) => {
         const matchesStatus =
             selectedStatus === "all" || booking.status === selectedStatus;
         const matchesSearch =
@@ -112,6 +117,42 @@ export default function BookingsPage() {
                 .includes(searchQuery.toLowerCase());
         return matchesStatus && matchesSearch;
     });
+
+    const handleCancelClick = (booking: UserBooking, e: React.MouseEvent) => {
+        e.preventDefault();
+        e.stopPropagation();
+        setSelectedBookingForCancel(booking);
+        setIsCancelModalOpen(true);
+    };
+
+    const handleCancelBooking = async () => {
+        if (!selectedBookingForCancel) return;
+
+        try {
+            // In real app, would call API to cancel booking
+            // const response = await fetch(`/api/bookings/${selectedBookingForCancel.id}`, {
+            //     method: 'PATCH',
+            //     headers: {
+            //         'Authorization': `Bearer ${token}`,
+            //     },
+            // });
+            // if (!response.ok) throw new Error('Failed to cancel booking');
+            
+            // Update local state
+            setBookings(prevBookings =>
+                prevBookings.map(b =>
+                    b.id === selectedBookingForCancel.id
+                        ? { ...b, status: "cancelled" as const }
+                        : b
+                )
+            );
+
+            setIsCancelModalOpen(false);
+            setSelectedBookingForCancel(null);
+        } catch (error) {
+            throw error;
+        }
+    };
 
     const getStatusBadge = (status: BookingStatus) => {
         const variants = {
@@ -206,11 +247,9 @@ export default function BookingsPage() {
                 ) : (
                     <div className="space-y-4">
                         {filteredBookings.map((booking) => (
-                            <Link
-                                key={booking.id}
-                                href={`/booking/confirmation/${booking.id}`}
-                            >
-                                <div className="bg-white rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow cursor-pointer">
+                            <div key={booking.id} className="relative">
+                                <Link href={`/booking/confirmation/${booking.id}`}>
+                                    <div className="bg-white rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow cursor-pointer">
                                     <div className="flex flex-col md:flex-row gap-4">
                                         {/* Image */}
                                         <div className="md:w-48 h-32 rounded-lg overflow-hidden flex-shrink-0">
@@ -321,8 +360,38 @@ export default function BookingsPage() {
                                     </div>
                                 </div>
                             </Link>
+
+                            {/* Cancel Button (outside Link, positioned absolutely) */}
+                            {booking.status === "confirmed" && (
+                                <div className="absolute bottom-6 right-6 z-10">
+                                    <Button
+                                        size="sm"
+                                        variant="outline"
+                                        onClick={(e) => handleCancelClick(booking, e)}
+                                        className="text-red-600 border-red-300 hover:bg-red-50 hover:border-red-500 shadow-sm"
+                                    >
+                                        <XCircle className="h-4 w-4 mr-1" />
+                                        Cancel
+                                    </Button>
+                                </div>
+                            )}
+                        </div>
                         ))}
                     </div>
+                )}
+
+                {/* Cancel Booking Modal */}
+                {selectedBookingForCancel && (
+                    <CancelBookingModal
+                        isOpen={isCancelModalOpen}
+                        onClose={() => {
+                            setIsCancelModalOpen(false);
+                            setSelectedBookingForCancel(null);
+                        }}
+                        onConfirm={handleCancelBooking}
+                        bookingNumber={selectedBookingForCancel.bookingNumber}
+                        hotelName={selectedBookingForCancel.accommodation.name}
+                    />
                 )}
             </Container>
         </div>

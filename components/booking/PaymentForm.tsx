@@ -145,11 +145,11 @@ export function PaymentForm({ pricing, onSubmit, onBack }: PaymentFormProps) {
                                     type="button"
                                     onClick={() => setSelectedMethod(method)}
                                     className={`
-                                        flex items-center gap-3 p-4 rounded-lg border-2 transition-all
+                                        flex items-center gap-3 p-4 rounded-lg border-2 transition-all duration-300 cursor-pointer
                                         ${
                                             selectedMethod.id === method.id
-                                                ? "border-pink-500 bg-pink-50"
-                                                : "border-gray-200 hover:border-gray-300"
+                                                ? "border-pink-500 bg-pink-50 shadow-md"
+                                                : "border-gray-200 hover:border-pink-300 hover:bg-pink-25 hover:shadow-sm"
                                         }
                                     `}
                                 >
@@ -421,13 +421,13 @@ export function PaymentForm({ pricing, onSubmit, onBack }: PaymentFormProps) {
                     type="button"
                     variant="outline"
                     onClick={onBack}
-                    className="flex-1"
+                    className="flex-1 hover:bg-gray-50 transition-all duration-300 cursor-pointer"
                 >
                     Back
                 </Button>
                 <Button
                     type="submit"
-                    className="flex-1 bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700"
+                    className="flex-1 bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 text-white hover:shadow-lg transition-all duration-300 cursor-pointer"
                 >
                     Complete Booking - {pricing.total.toLocaleString()}원
                 </Button>

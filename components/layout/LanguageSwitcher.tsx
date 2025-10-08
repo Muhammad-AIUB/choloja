@@ -37,7 +37,7 @@ export function LanguageSwitcher() {
                 variant="ghost"
                 size="sm"
                 onClick={() => setIsOpen(!isOpen)}
-                className="gap-2"
+                className="gap-2 hover:bg-pink-50 hover:text-pink-600 transition-all duration-300 cursor-pointer disabled:cursor-not-allowed"
                 disabled={isPending}
             >
                 <Globe className="h-4 w-4" />
@@ -67,10 +67,10 @@ export function LanguageSwitcher() {
                                     onClick={() => changeLanguage(lang.code)}
                                     disabled={isPending}
                                     className={cn(
-                                        "flex w-full items-center gap-3 rounded-md px-3 py-2 text-sm transition-colors",
+                                        "flex w-full items-center gap-3 rounded-md px-3 py-2 text-sm transition-all duration-300 cursor-pointer",
                                         locale === lang.code
-                                            ? "bg-pink-50 text-pink-600 font-medium"
-                                            : "text-gray-700 hover:bg-gray-100",
+                                            ? "bg-pink-50 text-pink-600 font-medium shadow-sm"
+                                            : "text-gray-700 hover:bg-gray-100 hover:shadow-sm",
                                         isPending &&
                                             "opacity-50 cursor-not-allowed"
                                     )}
