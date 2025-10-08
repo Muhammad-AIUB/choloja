@@ -1,28 +1,28 @@
-"use client";
-
 import { Container } from "@/components/ui/container";
 import { Star, MapPin } from "lucide-react";
 import Link from "next/link";
-import { useEffect, useState } from "react";
-import { AccommodationEntity } from "@/lib/domain/entities/Accommodation.entity";
+import { AccommodationRepository } from "@/lib/infrastructure/repositories/AccommodationRepository";
 
-export default function Home() {
-    const [accommodations, setAccommodations] = useState<AccommodationEntity[]>([]);
-    const [loading, setLoading] = useState(true);
+// Revalidate every 60 seconds (ISR)
+export const revalidate = 60;
 
-    useEffect(() => {
-        fetch("/api/accommodations")
-            .then((res) => res.json())
-            .then((response) => {
-                // API returns { success: true, data: { accommodations: [...], pagination: {...} } }
-                setAccommodations(response.data?.accommodations || []);
-                setLoading(false);
-            })
-            .catch((error) => {
-                console.error("Failed to fetch accommodations:", error);
-                setLoading(false);
-            });
-    }, []);
+async function getAccommodations() {
+    try {
+        const accommodationRepository = new AccommodationRepository();
+        const result = await accommodationRepository.findAll({
+            page: 1,
+            limit: 20,
+            sortBy: "rating",
+        });
+        return result.data;
+    } catch (error) {
+        console.error("Failed to fetch accommodations:", error);
+        return [];
+    }
+}
+
+export default async function Home() {
+    const accommodations = await getAccommodations();
 
     return (
         <main className="min-h-screen bg-gray-50">
@@ -51,11 +51,7 @@ export default function Home() {
                     </p>
                 </div>
 
-                {loading ? (
-                    <div className="text-center py-12">
-                        <p className="text-gray-500">Loading accommodations...</p>
-                    </div>
-                ) : accommodations.length === 0 ? (
+                {accommodations.length === 0 ? (
                     <div className="text-center py-12 bg-white rounded-xl shadow-sm">
                         <p className="text-gray-500 mb-4">No accommodations available yet.</p>
                         <Link href="/admin/register-accommodation">
