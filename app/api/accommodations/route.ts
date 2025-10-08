@@ -3,6 +3,10 @@ import { AccommodationRepository } from "@/lib/infrastructure/repositories/Accom
 import { CreateAccommodationUseCase } from "@/lib/application/use-cases/accommodation/CreateAccommodation.usecase";
 import { verifyToken } from "@/lib/infrastructure/auth/jwt";
 
+// Enable caching for this route
+export const dynamic = 'force-dynamic';
+export const revalidate = 60; // Revalidate every 60 seconds
+
 // GET all accommodations
 export async function GET(req: NextRequest) {
     try {
@@ -22,13 +26,18 @@ export async function GET(req: NextRequest) {
             sortBy,
         });
 
-        return NextResponse.json({
+        const response = NextResponse.json({
             success: true,
             data: {
                 accommodations: result.data,
                 pagination: result.pagination,
             },
         });
+
+        // Add cache headers
+        response.headers.set('Cache-Control', 'public, s-maxage=60, stale-while-revalidate=120');
+        
+        return response;
     } catch (error: unknown) {
         console.error("Get accommodations error:", error);
         return NextResponse.json(
