@@ -15,15 +15,38 @@ export function Header() {
             <Container>
                 <div className="flex h-16 items-center justify-between">
                     {/* Logo */}
-                    <Link href="/" className="flex items-center space-x-2">
-                        <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-gradient-to-br from-pink-500 to-purple-600">
-                            <span className="text-xl font-bold text-white">
-                                NOL
+                    <Link href="/" className="flex items-center space-x-2 group">
+                        <div className="relative flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-pink-500 via-purple-500 to-indigo-600 shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-105">
+                            {/* Sun/Wave Icon for Beach Resort Theme */}
+                            <svg 
+                                className="h-7 w-7 text-white"
+                                viewBox="0 0 24 24" 
+                                fill="none" 
+                                stroke="currentColor" 
+                                strokeWidth="2.5"
+                                strokeLinecap="round" 
+                                strokeLinejoin="round"
+                            >
+                                {/* Stylized building/hotel with Korean flair */}
+                                <path d="M3 21h18" />
+                                <path d="M5 21V7l7-4 7 4v14" />
+                                <path d="M9 9h6" />
+                                <path d="M9 13h6" />
+                                <path d="M9 17h6" />
+                                {/* Decorative wave/roof element */}
+                                <path d="M5 7c0-1 2-2 7-2s7 1 7 2" />
+                            </svg>
+                            {/* Decorative dot */}
+                            <div className="absolute -top-1 -right-1 h-3 w-3 bg-yellow-400 rounded-full shadow-md"></div>
+                        </div>
+                        <div className="hidden sm:flex flex-col">
+                            <span className="text-xl font-bold bg-gradient-to-r from-pink-600 to-purple-600 bg-clip-text text-transparent">
+                                Choloja
+                            </span>
+                            <span className="text-[10px] text-gray-500 -mt-1 tracking-wider">
+                                TRAVEL & STAY
                             </span>
                         </div>
-                        <span className="hidden text-xl font-bold sm:inline-block">
-                            NOL Travel
-                        </span>
                     </Link>
 
                     {/* Right Actions */}

@@ -3,6 +3,7 @@
 import { Container } from "@/components/ui/container";
 import NextImage from "next/image";
 import { useEffect, useState } from "react";
+import { SearchForm } from "./SearchForm";
 
 // Beautiful beach hotel images
 const beachHotelImages = [
@@ -64,9 +65,9 @@ export function HeroSection() {
             {/* Hero Content */}
             <div className="relative h-full flex items-center z-10">
                 <Container>
-                        <div className="max-w-4xl mx-auto text-center text-white">
+                        <div className="max-w-6xl mx-auto text-center text-white">
                             {/* Main Heading */}
-                            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
+                            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 leading-tight">
                                 <span className="block text-white drop-shadow-2xl">
                                     Discover Your Dream
                                 </span>
@@ -76,12 +77,14 @@ export function HeroSection() {
                             </h1>
 
                             {/* Subheading */}
-                            <p className="text-xl md:text-2xl lg:text-3xl mb-4 text-white font-semibold drop-shadow-2xl">
+                            <p className="text-lg md:text-xl lg:text-2xl mb-8 text-white font-semibold drop-shadow-2xl">
                                 Luxury Stays by the Ocean
                             </p>
-                            <p className="text-lg md:text-xl text-white drop-shadow-lg max-w-3xl mx-auto">
-                                Experience breathtaking ocean views, world-class amenities, and unforgettable stays
-                            </p>
+
+                            {/* Search Form */}
+                            <div className="mt-8 mb-4">
+                                <SearchForm />
+                            </div>
                         </div>
                 </Container>
             </div>
