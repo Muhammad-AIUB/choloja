@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { Button } from "@/components/ui/button";
 import { Container } from "@/components/ui/container";
@@ -13,37 +14,27 @@ export function Header() {
     return (
         <header className="sticky top-0 z-50 w-full border-b bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/60">
             <Container>
-                <div className="flex h-16 items-center justify-between">
+                <div className="flex h-20 items-center justify-between">
                     {/* Logo */}
                     <Link href="/" className="flex items-center space-x-2 group">
-                        <div className="relative flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-pink-500 via-purple-500 to-indigo-600 shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-105">
-                            {/* Sun/Wave Icon for Beach Resort Theme */}
-                            <svg 
-                                className="h-7 w-7 text-white"
-                                viewBox="0 0 24 24" 
-                                fill="none" 
-                                stroke="currentColor" 
-                                strokeWidth="2.5"
-                                strokeLinecap="round" 
-                                strokeLinejoin="round"
-                            >
-                                {/* Stylized building/hotel with Korean flair */}
-                                <path d="M3 21h18" />
-                                <path d="M5 21V7l7-4 7 4v14" />
-                                <path d="M9 9h6" />
-                                <path d="M9 13h6" />
-                                <path d="M9 17h6" />
-                                {/* Decorative wave/roof element */}
-                                <path d="M5 7c0-1 2-2 7-2s7 1 7 2" />
-                            </svg>
-                            {/* Decorative dot */}
-                            <div className="absolute -top-1 -right-1 h-3 w-3 bg-yellow-400 rounded-full shadow-md"></div>
+                        <div className="relative flex h-16 w-16 items-center justify-center rounded-2xl shadow-xl group-hover:shadow-2xl transition-all duration-300 group-hover:scale-110 overflow-hidden bg-white border-2 border-gray-100 group-hover:border-pink-200">
+                            {/* Your Custom Choloja Image */}
+                            <Image 
+                                src="/choloja-icon.jpeg" 
+                                alt="Choloja Logo" 
+                                width={64}
+                                height={64}
+                                className="h-full w-full object-cover rounded-2xl group-hover:brightness-110 transition-all duration-300"
+                                priority
+                            />
+                            {/* Subtle glow effect */}
+                            <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-pink-500/10 via-purple-500/10 to-blue-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                         </div>
-                        <div className="hidden sm:flex flex-col">
-                            <span className="text-xl font-bold bg-gradient-to-r from-pink-600 to-purple-600 bg-clip-text text-transparent">
+                        <div className="hidden sm:flex flex-col ml-3">
+                            <span className="text-2xl font-bold bg-gradient-to-r from-pink-600 to-purple-600 bg-clip-text text-transparent group-hover:from-pink-500 group-hover:to-purple-500 transition-all duration-300">
                                 Choloja
                             </span>
-                            <span className="text-[10px] text-gray-500 -mt-1 tracking-wider">
+                            <span className="text-[11px] text-gray-500 -mt-1 tracking-widest font-medium">
                                 TRAVEL & STAY
                             </span>
                         </div>
