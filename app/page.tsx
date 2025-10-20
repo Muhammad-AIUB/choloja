@@ -23,7 +23,7 @@ async function getAccommodations() {
 }
 
 export default async function Home() {
-    const accommodations = await getAccommodations();
+    // const accommodations = await getAccommodations(); // Using static hotels for now
 
     return (
         <main className="min-h-screen bg-gray-50">
@@ -67,7 +67,7 @@ export default async function Home() {
 
                                 <div className="flex items-center gap-1 text-sm text-gray-600 mb-3">
                                     <MapPin className="h-4 w-4" />
-                                    <span>Cox's Bazar, Bangladesh</span>
+                                    <span>Cox&apos;s Bazar, Bangladesh</span>
                                 </div>
 
                                 <div className="flex items-center gap-2 mb-4">

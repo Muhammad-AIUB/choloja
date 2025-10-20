@@ -131,7 +131,7 @@ export function SearchForm() {
     };
 
     // For test data, no date restrictions needed
-    const today = "2024-01-01"; // Set a fixed past date for testing
+    // const today = "2024-01-01"; // Set a fixed past date for testing
 
     return (
         <div className="w-full max-w-5xl mx-auto">
